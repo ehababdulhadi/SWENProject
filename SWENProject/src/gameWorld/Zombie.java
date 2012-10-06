@@ -4,38 +4,21 @@ import java.awt.Image;
 import java.util.Map;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
+
 public class Zombie extends MovingObject  {
 	
 	private String enemy_name;
-	private int targetDestX = 0;
-	private int targetDestY = 0;
-	private int targetCounter = 0;
-	private int moveSpeed;
+	private Item itemCarriedByZombie;
+	private Room roomOfZombie;
+	private ImageIcon zombieImage;
+	private boolean isBoss = false;
 	
-	private int points; // the number of points the player receives when they kill this enemy
+	public Zombie (String name, Room room, ImageIcon image){
 		
-	private Random random = new Random();
-	
-	/**
-	 * Constructs a new Zombie
-	 * @param owner the gamestate associated with this enemy
-	 * @param room the current location of the enemy
-	 * @param xPosition the current x position
-	 * @param yPosition the current y position
-	 * @param life the health points of the enemy
-	 * @param attackPower how strong the enemy is
-	 * @param image the image for this enemy
-	 * @param width the images width
-	 * @param height the images height
-	 * @param move the amount of time between each movement
-	 */
-	public Zombie (Room room, int xPosition, int yPosition, int life, int attackPower, Image image, int width, int height, int move){
-		
-		moveSpeed = random.nextInt(attackPower*10) + 5;
-		if(moveSpeed > 50)
-			moveSpeed = 50; //sets a max speed
-		
-		points = attackPower * life;		
+		this.enemy_name = name;
+		this.roomOfZombie = room;
+		this.zombieImage = image;
 	}
 	
 	/**
@@ -48,34 +31,6 @@ public class Zombie extends MovingObject  {
 			/** change enemy's image to dead **/
 			}			
 		}
-		
-	/** 
-	 * @return The number of points 
-	 */
-	public int getPoints() { return points; }
-	
-	/**
-	 * Moves the enemy randomly around the location
-	 */
-	/* for now, move the enemy randomly */
-	/*public void move() {
-		if (!isDead()) {
-			boolean playerFound = false;
-			 first check if any players in range  if attack counter == 0 
-			if (!isAttacking()) {
-				for (Player p : getLocation().getPlayers_in_location_ArrayList()) {
-					if (isInRange(p, 25, 10, true)) {
-						 a player is in range, attack them 
-						p.receiveHit(getAttackPower());
-						playerFound = true;
-						setAttacking(true);
-						break;
-					}
-				}
-			}
-			
-		}
-	}*/
 
 	public String getEnemy_name() {
 		return enemy_name;
@@ -117,5 +72,29 @@ public class Zombie extends MovingObject  {
 	public int getFrameHeight() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public Item getItemCarriedByZombie() {
+		return itemCarriedByZombie;
+	}
+
+	public void setItemCarriedByZombie(Item itemCarriedByZombie) {
+		this.itemCarriedByZombie = itemCarriedByZombie;
+	}
+
+	public Room getRoomOfZombie() {
+		return roomOfZombie;
+	}
+
+	public void setRoomOfZombie(Room roomOfZombie) {
+		this.roomOfZombie = roomOfZombie;
+	}
+
+	public boolean getIsBoss() {
+		return isBoss;
+	}
+
+	public void setIsBoss(boolean isBoss) {
+		this.isBoss = isBoss;
 	}	
 }
