@@ -1,54 +1,43 @@
 package gameWorld;
 
+import java.awt.Image;
 import java.util.Map;
-
 
 public class Item {
 	
-	private String item_name;
-	private String item_description;
-	private Room item_Location;
-	private int item_position;
+	private String itemName;
+	private String itemDescription;
+	private Room itemRoom;
+	private Image itemImage;
 	
-	/**
-	 * Use this constructor to create a new Item.
-	 * @param owner Containing GameState object
-	 */
-	public Item(String itemName, String itemDescription, Room room, int position) {
+	
+	public Item(String name, String description, Room room, Image image) {
 		
-		this.item_name = itemName;
-		this.item_description = itemDescription;
-		this.item_Location = room;
-		this.item_position = position;
-		
+		this.itemName = name;
+		this.itemDescription = description;
+		this.itemRoom = room;
+		this.itemImage = image;
 	}
 	
 	public String getItem_name(){
-		return this.item_name;
-	}
-
-	public void setItem_descrpition(String item_descrpition) {
-		this.item_description = item_descrpition;
+		return this.itemName;
 	}
 
 	public String getItem_descrpition() {
-		return item_description;
+		return itemDescription;
 	}
 
 	public void setItem_Location(Room item_Location) {
-		this.item_Location = item_Location;
+		this.itemRoom = item_Location;
 	}
 
 	public Room getItem_Location() {
-		return item_Location;
+		return itemRoom;
 	}
 
-	public void setItem_position(int item_position) {
-		this.item_position = item_position;
+	public Image getItemImage() {
+		return itemImage;
 	}
 
-	public int getItem_position() {
-		return item_position;
-	}
 
 }
