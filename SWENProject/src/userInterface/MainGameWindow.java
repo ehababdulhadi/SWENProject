@@ -1,7 +1,7 @@
 package userInterface;
 
-import gameWorld.Enemy;
-import gameWorld.Location;
+import gameWorld.Zombie;
+import gameWorld.Room;
 import gameWorld.ObjectType;
 import gameWorld.Player;
 import gameWorld.GameItem;

@@ -1,6 +1,6 @@
 package userInterface;
 
-import gameWorld.Location;
+import gameWorld.Room;
 import gameWorld.Player;
 import gameWorld.GameItem;
 

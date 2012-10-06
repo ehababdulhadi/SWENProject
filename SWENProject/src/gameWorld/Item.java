@@ -7,18 +7,18 @@ public class Item {
 	
 	private String item_name;
 	private String item_description;
-	private Location item_Location;
+	private Room item_Location;
 	private int item_position;
 	
 	/**
 	 * Use this constructor to create a new Item.
 	 * @param owner Containing GameState object
 	 */
-	public Item(String itemName, String itemDescription, Location location, int position) {
+	public Item(String itemName, String itemDescription, Room room, int position) {
 		
 		this.item_name = itemName;
 		this.item_description = itemDescription;
-		this.item_Location = location;
+		this.item_Location = room;
 		this.item_position = position;
 		
 	}
@@ -35,11 +35,11 @@ public class Item {
 		return item_description;
 	}
 
-	public void setItem_Location(Location item_Location) {
+	public void setItem_Location(Room item_Location) {
 		this.item_Location = item_Location;
 	}
 
-	public Location getItem_Location() {
+	public Room getItem_Location() {
 		return item_Location;
 	}
 

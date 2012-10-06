@@ -22,7 +22,7 @@ public abstract class MovingObject implements Drawable {
 	private boolean isAttacking = false;
 	private int attackCounter = 0;
 	private int receivedHitCounter = 0;
-	private Location location;
+	private Room room;
 	private int attackPower;
 
 	private int attackLength;
@@ -33,7 +33,7 @@ public abstract class MovingObject implements Drawable {
 	public MovingObject(String name, int life, int posX, int posY, int moveTotalFrames,
 			int atkStartFrame, int atkStopFrame, int deathFrame,
 			int frameSizeX, int frameSizeY, int attackLength,
-			int attackedMaxTime, int attackPower, Location location, Image image, 
+			int attackedMaxTime, int attackPower, Room room, Image image, 
 			int actualPosXOffset, int actualWidth) {
 		
 		this.setName(name);
@@ -43,7 +43,7 @@ public abstract class MovingObject implements Drawable {
 		this.attackLength = attackLength;
 		this.receivedHitMaxTime = attackedMaxTime;
 		this.attackPower = attackPower;
-		this.setLocation(location);
+		this.setLocation(room);
 		this.image = image;
 		
 	}
@@ -144,12 +144,12 @@ public abstract class MovingObject implements Drawable {
 		return life;
 	}
 
-	public Location getLocation() {
-		return location;
+	public Room getLocation() {
+		return room;
 	}
 
-	public void setLocation(Location location) {
-		this.location = location;
+	public void setLocation(Room room) {
+		this.room = room;
 	}
 
 	public int getAttackPower() {

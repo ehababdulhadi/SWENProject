@@ -27,13 +27,13 @@ public class Player extends MovingObject{
 	 * Constructs a player and sets a bunch of parameters as follows
 	 * @param owner the gamestate which controls the player
 	 * @param name the name of the player
-	 * @param location the current location of the player
+	 * @param room the current location of the player
 	 * @param x the width of the players image
 	 * @param y the height of the players image
 	 * @param life the life points of the player
 	 * @param image the image associated to the player
 	 */
-	public Player(String name, Location location, int x, int y, int life, Image image){
+	public Player(String name, Room room, int x, int y, int life, Image image){
 
 		
 	}
@@ -48,10 +48,10 @@ public class Player extends MovingObject{
 		setAttacking(true);
 
 
-		List<Enemy> enemies = getLocation().getEnemiesList();
+		List<Zombie> zombies = getLocation().getEnemiesList();
 		// Loop thought the enemies of this location and check if the player's sword is touching any of them //
-		for (int i=0; i< enemies.size(); i++){
-			Enemy e = enemies.get(i);
+		for (int i=0; i< zombies.size(); i++){
+			Zombie e = zombies.get(i);
 			// if the sword is touching the enemy then call a hit method on the enemy //
 			if (!e.isDead() && isInRange(e, rangeY, rangeX, true)) {
 				e.receiveHit(getAttackPower());

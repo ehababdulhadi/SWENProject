@@ -40,12 +40,12 @@ public class Main {
 	private static void initializeGame() {
 		// TODO Auto-generated method stub
 		// Game's Locations
-		Location  location1;
-		Location  location2;
-		Location  location3;
-		Location  location4;
-		Location  location5;
-		Location  location6;
+		Room  location1;
+		Room  location2;
+		Room  location3;
+		Room  location4;
+		Room  location5;
+		Room  location6;
 
 		// Background Images' Roots //
 		final String background1ImageRoot = "";
@@ -61,7 +61,7 @@ public class Main {
 		final String object3ImageRoot = "";
 		final String object4ImageRoot = "";
 
-		// Enemy Images' Roots  //
+		// Zombie Images' Roots  //
 		final String enemy1ImageRoot = "";
 		final String enemy2ImageRoot = "";
 		final String enemy3ImageRoot = "";
