@@ -31,8 +31,7 @@ public class Main {
 		GameState game = new GameState();
 		
 		//Start the application window
-		mainGameWindow =  new MainGameWindow();
-		
+		mainGameWindow =  new MainGameWindow();	
 	}
 	
 	public static void endGame(){
@@ -41,7 +40,4 @@ public class Main {
 		
 	}
 	
-	
-	
-
 }

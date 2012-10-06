@@ -14,6 +14,7 @@ public class GameState {
 			public Room  room4;
 			public Room  room5;
 			public Room  room6;
+			public Room safety;
 
 			/** Rendering Team: Add the root of the images files for each room. Use only 1 if you'll use 1 image to all rooms **/
 			// Background Images' Roots // 
@@ -47,14 +48,41 @@ public class GameState {
 
 	public void initializeGame() {
 		
-		// Creating the locations //
+		// Creating the Rooms //
 		createRooms();
 		
-		// Creating the locations //
+		// Add doors to rooms //
+		addDoorsToRooms();
+		
+		// Creating the Rooms //
 		fillRooms();
 		
 		/** Display the game window starting from Room 1, render the items in the room and listen to mouse clicks **/
 	
+	}
+
+	private void addDoorsToRooms() {
+		
+		// Create Doors //
+		Door door1 = new Door(room1, room2, false, "");
+		Door door2 = new Door(room2, room6, true, "Silver Key");
+		Door door3 = new Door(room2, room3, false, "");
+		Door door4 = new Door(room3, room4, true, "Bronze Key");
+		Door door5 = new Door(room4, room5, false, "Silver Key");
+		Door door6 = new Door(room6, safety, true, "Golden Key"); // Final Exit: Player Win The Game //
+			
+		// Add Doors to Rooms //
+		room1.getDoorsOfTheRoom().add(door1);
+		room2.getDoorsOfTheRoom().add(door1);
+		room2.getDoorsOfTheRoom().add(door2);
+		room2.getDoorsOfTheRoom().add(door3);
+		room3.getDoorsOfTheRoom().add(door3);
+		room3.getDoorsOfTheRoom().add(door4);
+		room4.getDoorsOfTheRoom().add(door4);
+		room4.getDoorsOfTheRoom().add(door5);
+		room5.getDoorsOfTheRoom().add(door5);
+		room6.getDoorsOfTheRoom().add(door2);
+		room6.getDoorsOfTheRoom().add(door6);
 	}
 
 	private void fillRooms() {
@@ -96,6 +124,7 @@ public class GameState {
 		
 		// Fill Room 6 //
 		Item bazooka = new Item("Bazooka", "Bazooka!!", room6, tempImage);
+
 		
 	}
 
@@ -121,6 +150,9 @@ public class GameState {
 		
 		// Create Room6 //
 		room6 = new Room ("room6", tempImage, "Room 6");
+		
+		// Create Room7: Safety! //
+		safety = new Room ("safety", tempImage, "Door to Safety and Freedom!");
 		
 	}
 	
