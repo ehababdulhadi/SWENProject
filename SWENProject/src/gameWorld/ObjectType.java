@@ -8,8 +8,8 @@ import userInterface.MainGameWindow;
  * 
  */
 public enum ObjectType {
-	KEY("keyimage"), 
-	// add more // 
+	KEY("keyimage"),
+	WEAPON("keyimage"),
 	LOCATION_FEATURE(null);
 	
 	private String imagePath;

@@ -9,34 +9,29 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 import userInterface.MainGameWindow;
 import userInterface.Drawable;
-/** This class helps to create the locations of the game
+/** Represents a Room, which can contain a Player, Zombie, Item and Doors
  * 
- *
  */
 public class Room {
-	private static final int GRID_WIDTH = 2560;
-	private static final int GRID_HEIGHT = 500;
 	
 	private String location_name;
 	private String location_description;
 	private ArrayList<Item> itemsList = new ArrayList<Item>();
 	private ArrayList<Player> playersList = new ArrayList<Player>();
-	private ArrayList<GameItem> objectsList = new ArrayList<GameItem>();
-	private ImageIcon location_background; 
-	private ImageIcon location_object;
+	private ImageIcon roomBackground; 
 	private ArrayList<Zombie> enemiesList= new ArrayList<Zombie>();
 	Random randomGenerator = new Random();
-	private Room leftLocation;
-	private Room rightLocation;
-	private int numberOfEnemies;
+//	private Room leftLocation;
+//	private Room rightLocation;
+//	private int numberOfEnemies;
 
 	public Room(String name, ImageIcon location_background, ImageIcon location_object, 
 			List<ImageIcon> enemy_images, String description){
 			
 		this.location_name = name;
 		this.location_description = description;
-		this.location_background = location_background;
-		this.location_object = location_object;
+		this.roomBackground = location_background;
+		
 		
 		// Create the enemies of this location //
 		createEnemiesOfTheLocation();
@@ -45,29 +40,28 @@ public class Room {
 		createStationaryObjectsOfTheLocation();
 		
 		}
-
 	
 	private void createEnemiesOfTheLocation(){
 		
-			for (int i=0; i<numberOfEnemies; i++){ 
+		/**	for (int i=0; i<numberOfEnemies; i++){ 
 				int randomXposition = randomGenerator.nextInt(2560); 
 				int randomYposition = randomGenerator.nextInt(500); 
 				int random = randomGenerator.nextInt(10);
 			
 				Zombie newEnemy;
-				/* create zombies */	
+				// create zombies //	
 				if (random < 7) {
-					//newEnemy = new Zombie(this , randomXposition, randomYposition,  500, 1, /**image of enemy**/, 200, 150, 500);
+					//newEnemy = new Zombie(this , randomXposition, randomYposition,  500, 1, 200, 150, 500);
 				}
 				else if (random < 9) {
-					//newEnemy = new Zombie(this , randomXposition, randomYposition,  1000, 2, /**image of enemy**/, 200, 150, 500);
+					//newEnemy = new Zombie(this , randomXposition, randomYposition,  1000, 2, 200, 150, 500);
 				}
 				else {
-					//newEnemy = new Zombie(this , randomXposition, randomYposition,  3000, 4, /**image of enemy**/, 200, 150, 500);
+					//newEnemy = new Zombie(this , randomXposition, randomYposition,  3000, 4, 200, 150, 500);
 				}
 				//getEnemiesList().add(newEnemy);
 			}
-			
+			**/
 		}
 	
 	private void createStationaryObjectsOfTheLocation(){
@@ -94,15 +88,12 @@ public class Room {
 		return playersList;
 	}
 
-	public ArrayList<GameItem> getObjects_in_location_ArrayList() {
+	/*public ArrayList<GameItem> getObjects_in_location_ArrayList() {
 		return objectsList;
 	}
 	
-	public Image getObjectImage(){
-		return location_object.getImage();
-	}
-
-	public void setLeftLocation(Room leftLocation) {
+*/
+	/*public void setLeftLocation(Room leftLocation) {
 		this.leftLocation = leftLocation;
 	}
 
@@ -119,7 +110,7 @@ public class Room {
 	public Room getRightLocation() {
 		return rightLocation;
 	}
-
+*/
 	public ArrayList<Zombie> getEnemiesList() {
 		return enemiesList;
 	}
@@ -135,10 +126,9 @@ public class Room {
 		return true;
 	}
 
-
-	public List<GameItem> getCarryableObjects() {
+	/*public List<GameItem> getCarryableObjects() {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}*/
 
 }

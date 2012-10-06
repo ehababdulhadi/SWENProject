@@ -17,7 +17,7 @@ import userInterface.MainGameWindow;
  * @author 
  *
  */
-public class Player extends MovingObject{
+public class Player {
 	private int player_score = 0;
 
 	int livesRemaining = 3;
@@ -45,7 +45,7 @@ public class Player extends MovingObject{
 	public void attack() {
 		int rangeX = 50;
 		int rangeY = 10;
-		setAttacking(true);
+		//setAttacking(true);
 
 
 		List<Zombie> zombies = getLocation().getEnemiesList();
@@ -53,28 +53,28 @@ public class Player extends MovingObject{
 		for (int i=0; i< zombies.size(); i++){
 			Zombie e = zombies.get(i);
 			// if the sword is touching the enemy then call a hit method on the enemy //
-			if (!e.isDead() && isInRange(e, rangeY, rangeX, true)) {
+			/*if (!e.isDead() && isInRange(e, rangeY, rangeX, true)) {
 				e.receiveHit(getAttackPower());
-
+*/
 				/* if the attack resulted in the death of an enemy, add some points to 
 				 * the players score */
 				if(e.isDead()) setPlayer_score(player_score + e.getPoints());
 			}
 		}
-	}
+	// }
 
 	/**
 	 * This method is called whenever the player tries to interact
 	 * with their environment.
-	 */
+	 *//*
 	public void interact() {
 		pickUpObject();
-	}
+	}*/
 
 	/** This method will allow a player to get information about objects. When a player press ( I ) on an object 
 	 * a window will pop up with a description about that object.
 	 */
-	public void lookAt() {
+	/*public void lookAt() {
 		for (int i = 0; i < getLocation().getObjects_in_location_ArrayList().size(); i++){
 
 			if (isInRange(getLocation().getObjects_in_location_ArrayList().get(i), 0, 20, false)){
@@ -83,13 +83,18 @@ public class Player extends MovingObject{
 				// display info about the item on the screen //
 			}
 		}
+	}*/
+
+	private Room getLocation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	/**
 	 * This method checks if there are any keys within range of the player.
 	 * If there are, they are picked up and added to the players list of keys.
 	 */
-	private void pickUpObject() {
+	/*private void pickUpObject() {
 		List<GameItem> objects = getLocation().getCarryableObjects();
 
 		for (GameItem s : objects) {
@@ -97,7 +102,7 @@ public class Player extends MovingObject{
 				// Check what type of item it is and act accordingly //
 			}
 		}
-	}
+	}*/
 
 
 	public void setPlayer_score(int player_score) {
@@ -108,7 +113,7 @@ public class Player extends MovingObject{
 		return player_score;
 	}
 
-	public void setPlayer_Life(int player_Life) {
+	/*public void setPlayer_Life(int player_Life) {
 		super.setLife(player_Life);
 	}
 
@@ -118,7 +123,7 @@ public class Player extends MovingObject{
 
 	@Override public void setPosY(int posY) {
 		super.setPosY(posY);
-	}
+	}*/
 
 	/**
 	 * This method is called whenever the player is attacked.
@@ -131,7 +136,7 @@ public class Player extends MovingObject{
 
 	public int getLivesRemaining() { return livesRemaining; }
 
-	@Override
+	/*@Override
 	public int getCurrentFrame() {
 		// TODO Auto-generated method stub
 		return 0;
@@ -148,7 +153,7 @@ public class Player extends MovingObject{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+*/
 
 }
 

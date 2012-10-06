@@ -16,7 +16,7 @@ public abstract class MovingObject implements Drawable {
 	private int life;	
 	private int posX;
 	private int posY;
-	private ArrayList<GameItem> items = new ArrayList<GameItem>();
+	// private ArrayList<GameItem> items = new ArrayList<GameItem>();
 
 	private boolean isMoving = false;
 	private boolean isAttacking = false;
@@ -169,13 +169,13 @@ public abstract class MovingObject implements Drawable {
 		this.name = name;
 	}
 
-	public ArrayList<GameItem> getItems() {
+	/*public ArrayList<GameItem> getItems() {
 		return items;
 	}
 
 	public boolean isBeingAttacked() {
 		// TODO Auto-generated method stub
 		return false;
-	}
+	}*/
 
 }

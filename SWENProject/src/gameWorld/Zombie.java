@@ -58,14 +58,14 @@ public class Zombie extends MovingObject  {
 	 * Moves the enemy randomly around the location
 	 */
 	/* for now, move the enemy randomly */
-	public void move() {
+	/*public void move() {
 		if (!isDead()) {
 			boolean playerFound = false;
-			/* first check if any players in range  if attack counter == 0 */
+			 first check if any players in range  if attack counter == 0 
 			if (!isAttacking()) {
 				for (Player p : getLocation().getPlayers_in_location_ArrayList()) {
 					if (isInRange(p, 25, 10, true)) {
-						/* a player is in range, attack them */
+						 a player is in range, attack them 
 						p.receiveHit(getAttackPower());
 						playerFound = true;
 						setAttacking(true);
@@ -75,7 +75,7 @@ public class Zombie extends MovingObject  {
 			}
 			
 		}
-	}
+	}*/
 
 	public String getEnemy_name() {
 		return enemy_name;
