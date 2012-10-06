@@ -21,7 +21,12 @@ public class Player {
 	private Room playerRoom;
 	private Room previousRoom;
 	
-	public Player(String name, Room room, int x, int y, int life, Image image){
+	public Player(String name, ArrayList<Item> items, Room room, Room prevRoom){
+		
+		this.playerName = name;
+		this.playerItems = items;
+		this.playerRoom = room;
+		this.previousRoom = prevRoom;
 		
 	}
 

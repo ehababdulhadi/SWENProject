@@ -25,19 +25,18 @@ public class Room {
 	Random randomGenerator = new Random();
 
 
-	public Room(String name, ImageIcon background, String description, ArrayList<Item> items
-			, ArrayList<Player> players, Zombie zombie, ArrayList<Door> doors){
+	public Room(String name, ImageIcon background, String description){
 			
 		this.roomName = name;
 		this.roomDescription = description;
 		this.roomBackground = background;
-		this.setItemsOfTheRoom(items);
-		this.playersInTheRoom = players;
-		this.zombieOfTheRoom = zombie;
-		this.doorsOfTheRoom = doors;
+		//this.setItemsOfTheRoom(items);
+		//this.playersInTheRoom = players;
+		//this.zombieOfTheRoom = zombie;
+		//this.doorsOfTheRoom = doors;
 		
-    	if (!(zombie == null))
-    			this.hasZombie = true;
+    	/*if (!(zombie == null))
+    			this.hasZombie = true; **/
 		}
 
 	public String getLocation_name() {
