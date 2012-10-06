@@ -14,121 +14,70 @@ import userInterface.Drawable;
  */
 public class Room {
 	
-	private String location_name;
-	private String location_description;
-	private ArrayList<Item> itemsList = new ArrayList<Item>();
-	private ArrayList<Player> playersList = new ArrayList<Player>();
-	private ImageIcon roomBackground; 
-	private ArrayList<Zombie> enemiesList= new ArrayList<Zombie>();
+	private String roomName;
+	private String roomDescription;
+	private ImageIcon roomBackground;
+	private ArrayList<Item> itemsOfTheRoom = new ArrayList<Item>();
+	private ArrayList<Player> playersInTheRoom = new ArrayList<Player>();
+	private Zombie zombieOfTheRoom = null;
+	private boolean hasZombie = false;
+	private ArrayList<Door> doorsOfTheRoom = new ArrayList<Door>();
 	Random randomGenerator = new Random();
-//	private Room leftLocation;
-//	private Room rightLocation;
-//	private int numberOfEnemies;
 
-	public Room(String name, ImageIcon location_background, ImageIcon location_object, 
-			List<ImageIcon> enemy_images, String description){
+
+	public Room(String name, ImageIcon background, String description, ArrayList<Item> items
+			, ArrayList<Player> players, Zombie zombie, ArrayList<Door> doors){
 			
-		this.location_name = name;
-		this.location_description = description;
-		this.roomBackground = location_background;
+		this.roomName = name;
+		this.roomDescription = description;
+		this.roomBackground = background;
+		this.setItemsOfTheRoom(items);
+		this.playersInTheRoom = players;
+		this.zombieOfTheRoom = zombie;
+		this.doorsOfTheRoom = doors;
 		
-		
-		// Create the enemies of this location //
-		createEnemiesOfTheLocation();
-		
-		// Create the Stationary Objects of this location //
-		createStationaryObjectsOfTheLocation();
-		
+    	if (!(zombie == null))
+    			this.hasZombie = true;
 		}
-	
-	private void createEnemiesOfTheLocation(){
-		
-		/**	for (int i=0; i<numberOfEnemies; i++){ 
-				int randomXposition = randomGenerator.nextInt(2560); 
-				int randomYposition = randomGenerator.nextInt(500); 
-				int random = randomGenerator.nextInt(10);
-			
-				Zombie newEnemy;
-				// create zombies //	
-				if (random < 7) {
-					//newEnemy = new Zombie(this , randomXposition, randomYposition,  500, 1, 200, 150, 500);
-				}
-				else if (random < 9) {
-					//newEnemy = new Zombie(this , randomXposition, randomYposition,  1000, 2, 200, 150, 500);
-				}
-				else {
-					//newEnemy = new Zombie(this , randomXposition, randomYposition,  3000, 4, 200, 150, 500);
-				}
-				//getEnemiesList().add(newEnemy);
-			}
-			**/
-		}
-	
-	private void createStationaryObjectsOfTheLocation(){
-		
-		String objectName = null;
-			/** Distribute items in the room randomly**/
-	}
-	
+
 	public String getLocation_name() {
-		return location_name;
+		return roomName;
 	}
 	
 	public String getLocation_description() {
-		return location_description;
+		return roomDescription;
 	}
-
-
-	public ArrayList<Item> getItems_in_location_ArrayList() {
-		return itemsList;
-	}
-
 
 	public ArrayList<Player> getPlayers_in_location_ArrayList() {
-		return playersList;
+		return playersInTheRoom;
 	}
 
-	/*public ArrayList<GameItem> getObjects_in_location_ArrayList() {
-		return objectsList;
-	}
-	
-*/
-	/*public void setLeftLocation(Room leftLocation) {
-		this.leftLocation = leftLocation;
+	public Zombie getZombie() {
+		return zombieOfTheRoom;
 	}
 
-	public Room getLeftLocation() {
-		return leftLocation;
+	public boolean isHasZombie() {
+		return hasZombie;
 	}
 
-
-	public void setRightLocation(Room rightLocation) {
-		this.rightLocation = rightLocation;
+	public void setHasZombie(boolean hasZombie) {
+		this.hasZombie = hasZombie;
 	}
 
-
-	public Room getRightLocation() {
-		return rightLocation;
-	}
-*/
-	public ArrayList<Zombie> getEnemiesList() {
-		return enemiesList;
-	}
-	
-	/**
-	 * Method for working out whether all the enemies in a location are dead or not.
-	 */
-	public boolean areEnemiesDead(){
-		for(Zombie z : enemiesList){
-			if(z.isDead()==false)
-				return false;
-		}
-		return true;
+	public ArrayList<Door> getDoorsOfTheRoom() {
+		return doorsOfTheRoom;
 	}
 
-	/*public List<GameItem> getCarryableObjects() {
-		// TODO Auto-generated method stub
-		return null;
-	}*/
+	public void setDoorsOfTheRoom(ArrayList<Door> doorsOfTheRoom) {
+		this.doorsOfTheRoom = doorsOfTheRoom;
+	}
+
+	public ArrayList<Item> getItemsOfTheRoom() {
+		return itemsOfTheRoom;
+	}
+
+	public void setItemsOfTheRoom(ArrayList<Item> itemsOfTheRoom) {
+		this.itemsOfTheRoom = itemsOfTheRoom;
+	}
 
 }

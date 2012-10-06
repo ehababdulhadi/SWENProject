@@ -48,18 +48,18 @@ public class Player {
 		//setAttacking(true);
 
 
-		List<Zombie> zombies = getLocation().getEnemiesList();
+		Zombie zombie = getRoom().getZombie();
 		// Loop thought the enemies of this location and check if the player's sword is touching any of them //
-		for (int i=0; i< zombies.size(); i++){
-			Zombie e = zombies.get(i);
+		//for (int i=0; i< zombies.size(); i++){
+			//Zombie e = zombies.get(i);
 			// if the sword is touching the enemy then call a hit method on the enemy //
 			/*if (!e.isDead() && isInRange(e, rangeY, rangeX, true)) {
 				e.receiveHit(getAttackPower());
 */
 				/* if the attack resulted in the death of an enemy, add some points to 
 				 * the players score */
-				if(e.isDead()) setPlayer_score(player_score + e.getPoints());
-			}
+				//if(e.isDead()) setPlayer_score(player_score + e.getPoints());
+			//}
 		}
 	// }
 
@@ -85,7 +85,7 @@ public class Player {
 		}
 	}*/
 
-	private Room getLocation() {
+	private Room getRoom() {
 		// TODO Auto-generated method stub
 		return null;
 	}
