@@ -1,8 +1,5 @@
 package gameWorld;
 
-import java.awt.Image;
-import java.util.Map;
-import java.util.Random;
 
 import javax.swing.ImageIcon;
 

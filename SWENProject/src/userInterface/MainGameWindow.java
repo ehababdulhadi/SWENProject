@@ -1,139 +1,40 @@
 package userInterface;
 
-import gameWorld.Zombie;
-import gameWorld.Room;
-import gameWorld.ObjectType;
-import gameWorld.Player;
-import gameWorld.GameItem;
-
-import java.util.HashSet;
-import java.util.Set;
-import java.awt.event.*;
+import gameWorld.GameState;
+import java.awt.Dimension;
 
 import javax.swing.*;
 
-
 /**
- * The application window for holding menus and the rendering window. 
- * 
+ * The application window for holding menus and the rendering window.
+ *
  */
-public class MainGameWindow extends JFrame implements MouseListener, ActionListener, WindowListener{
-	
+public class MainGameWindow extends JFrame {
 
-	
-	public MainGameWindow(){
-		
-	}
+    public static final ViewSwitcher ROOM_SWITCHER = new ViewSwitcher();
+    
+    public static void switchToRoom(int room){
+        ROOM_SWITCHER.switchTo(room % GameState.ROOMS.length);
+    }
 
+    public MainGameWindow() {
+        
 
+        ROOM_SWITCHER.setHost(getContentPane());
+        
+        ROOM_SWITCHER.registerView(new StartMenu(), -1);
+        
+        for(int i = 0; i < GameState.ROOMS.length; i++){
+            ROOM_SWITCHER.registerView(GameState.ROOMS[i], i);
+        }
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+        ROOM_SWITCHER.switchTo(-1);
+        
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setPreferredSize(new Dimension(1000, 500));
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
 
-
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void windowOpened(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void windowClosing(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void windowClosed(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void windowIconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void windowDeiconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void windowActivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void windowDeactivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	public static ImageIcon makeImageIcon(String imagePath) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    }
 }
-

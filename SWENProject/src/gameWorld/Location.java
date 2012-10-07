@@ -2,13 +2,9 @@ package gameWorld;
 
 import java.awt.Image;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import javax.swing.ImageIcon;
-import userInterface.MainGameWindow;
-import userInterface.Drawable;
 /** This class helps to create the locations of the game
  * 
  *
@@ -57,15 +53,15 @@ public class Location {
 				Enemy newEnemy;
 				/* create enemies */	
 				if (random < 7) {
-					newEnemy = new Enemy(this , randomXposition, randomYposition,  500, 1, /**image of enemy**/, 200, 150, 500);
+					//newEnemy = new Enemy(this , randomXposition, randomYposition,  500, 1, /**image of enemy**/, 200, 150, 500);
 				}
 				else if (random < 9) {
-					newEnemy = new Enemy(this , randomXposition, randomYposition,  1000, 2, /**image of enemy**/, 200, 150, 500);
+					//newEnemy = new Enemy(this , randomXposition, randomYposition,  1000, 2, /**image of enemy**/, 200, 150, 500);
 				}
 				else {
-					newEnemy = new Enemy(this , randomXposition, randomYposition,  3000, 4, /**image of enemy**/, 200, 150, 500);
+					//newEnemy = new Enemy(this , randomXposition, randomYposition,  3000, 4, /**image of enemy**/, 200, 150, 500);
 				}
-				getEnemiesList().add(newEnemy);
+				//getEnemiesList().add(newEnemy);
 			}
 			
 		}
@@ -129,8 +125,7 @@ public class Location {
 	 */
 	public boolean areEnemiesDead(){
 		for(Enemy e : enemiesList){
-			if(e.isDead()==false)
-				return false;
+			if(!e.isDead()) return false;
 		}
 		return true;
 	}

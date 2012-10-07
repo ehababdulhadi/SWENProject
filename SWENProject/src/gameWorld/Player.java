@@ -1,19 +1,9 @@
 package gameWorld;
 
-import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.Toolkit;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
-import userInterface.MainGameWindow;
-
-public class Player {
+public class Player extends MovingObject{
 	
 	String playerName;
 	private int livesRemaining = 3;
@@ -61,6 +51,31 @@ public class Player {
 	public void setPlayerRoom(Room playerRoom) {
 		this.playerRoom = playerRoom;
 	}
+
+    @Override
+    public void receiveHit(int damage) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public int getFrameWidth() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public int getFrameHeight() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public int getCurrentFrame() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean isBeingAttacked() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
 	
 }
