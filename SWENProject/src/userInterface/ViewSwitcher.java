@@ -69,9 +69,11 @@ package userInterface;
                     }  
                     current = view;  
       
-                    host.add(view, BorderLayout.CENTER);  
+                    host.add(view, BorderLayout.CENTER);
                     host.validate();  
                     host.repaint(); // just to make sure    
+                    
+                    view.requestFocusInWindow();
                 }  
             });  
       

@@ -1,124 +1,96 @@
 package gameWorld;
 
 import java.awt.event.MouseEvent;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import main.Client;
+import main.NetworkThread;
+import main.NetworkType;
+import main.Server;
 import userInterface.Message;
 
 public class GameState {
-    
-  public static final int NUMBER_OF_ROOMS = 6;
-    
-    public static Room [] ROOMS = new Room [NUMBER_OF_ROOMS];
-    public static boolean [] LOCKS = new boolean [NUMBER_OF_ROOMS];
-    
-    static{
-        
+
+    public static final int NUMBER_OF_ROOMS = 6;
+    public static Room[] ROOMS = new Room[NUMBER_OF_ROOMS];
+    public static boolean[] LOCKS = new boolean[NUMBER_OF_ROOMS];
+    private static NetworkThread network;
+
+    static {
+
         // unlock initial doors
         LOCKS[0] = true;
         LOCKS[1] = true;
         LOCKS[2] = true;
-        
-        
+
+
     }
-	
-	// TODO Auto-generated method stub
-			// Game's Locations
-			//public Room  room1;
-			//public  Room  room2;
-			//public  Room  room3;
-			//public Room  room4;
-			//public  Room  room5;
-			//public Room  room6;
-			//public static Room safety;
 
-			/** Rendering Team: Add the root of the images files for each room. Use only 1 if you'll use 1 image to all ROOMS **/
-			// Background Images' Roots // 
-//			final String room1Background1ImageRoot = "";
-//			final String room2Background2ImageRoot = "";
-//			final String room3Background3ImageRoot = "";
-//			final String room4Background4ImageRoot = "";
-//			final String room5Background5ImageRoot = "";
-//			final String room6Background6ImageRoot = "";
+    public static void createNetworkThread(NetworkType type) {
 
-//			/** Rendering Team: Add the root of the images files for each item **/
-//			// Stationary Objects Images' Roots //
-//			final String goldenKeyImageRoot = "";
-//			final String silverKeyImageRoot = "";
-//			final String bronzeKeyImageRoot = "";
-//			final String gunImageRoot = "";
-//			final String bazookaImageRoot = "";
-//			final String boxImageRoot = "";
-//			final String noteImageRoot = "";
-//			final String brikImageRoot = "";
-//
-//			/** Rendering Team: Add the root of the images files for each Zombie **/
-//			final String zombieImageRoot = "";
-//			final String bossZombieImageRoot = "";
-//			final String deadZomabieImageRoot = "";
-			 
-			
-			public GameState (){
-				initializeGame();	
-			}
+        switch (type) {
+            case SERVER:
+                network = new Server() {
 
-	public void initializeGame() {
-		
-		// Creating the Rooms //
-		createRooms();
-		
-		// Add doors to ROOMS //
-		addDoorsToRooms();
-		
-		// Creating the Rooms //
-		fillRooms();
-		
-		/** Display the game window starting from Room 1, render the items in the room and listen to mouse clicks **/
-	
-	}
+                    public void read(int data) {
+                        readFromNetwork(data);
+                    }
+                };
+                break;
+            case CLIENT:
+                network = new Client() {
 
-	private void addDoorsToRooms() {
-		
-		// Create Doors //
-//		Door door1 = new Door(1, false, "");
-//		Door door2 = new Door(5, true, "Silver Key");
-//		Door door3 = new Door(2, false, "");
-//		Door door4 = new Door(3, true, "Bronze Key");
-//		Door door5 = new Door(4, false, "Silver Key");
-//		Door door6 = new Door(6, true, "Golden Key"); // Final Exit: Player Win The Game //
-//			
-//		// Add Doors to Rooms //
-//		ROOMS[0].getDoorsOfTheRoom().add(door1);
-//		ROOMS[1].getDoorsOfTheRoom().add(door1);
-//		ROOMS[1].getDoorsOfTheRoom().add(door2);
-//		ROOMS[1].getDoorsOfTheRoom().add(door3);
-//		ROOMS[2].getDoorsOfTheRoom().add(door3);
-//		ROOMS[2].getDoorsOfTheRoom().add(door4);
-//		ROOMS[3].getDoorsOfTheRoom().add(door4);
-//		ROOMS[3].getDoorsOfTheRoom().add(door5);
-//		ROOMS[4].getDoorsOfTheRoom().add(door5);
-//		ROOMS[5].getDoorsOfTheRoom().add(door2);
-//		ROOMS[5].getDoorsOfTheRoom().add(door6);
-	}
+                    public void read(int data) {
+                        readFromNetwork(data);
+                    }
+                };
+                break;
+        }
+        network.start();
+    }
+
+    public static void readFromNetwork(int data) {
+        System.out.println("Read from network: " + data);
+    }
+
+    public static void sendToNetwork(int data) {
+        if (network != null) network.send(data);
+    }
+
+    public static void setNetworkThread(NetworkThread network) {
+    }
+
+    public GameState() {
+        initializeGame();
+    }
+
+    public void initializeGame() {
+
+        // Creating the Rooms //
+        createRooms();
+
+        // Creating the Rooms //
+        fillRooms();
+
+        /**
+         * Display the game window starting from Room 1, render the items in the room and listen to mouse clicks *
+         */
+    }
 
     private void fillRooms() {
-
-        ImageIcon tempImage = new ImageIcon();
         /**
          * This will need to be replaced later with the right image to each item in the game *
          */
-        Chest bronzeChest = new Chest(0.25, 0.6, 0.2, 0.2, "images/safe.png") {
+        Chest bronzeChest = new Chest(0.20, 0.8, 0.20, 0.20, "images/safe.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
-                 System.err.println("Bronze chest was clicked");
-                 String input = JOptionPane.showInputDialog("What is the combination?");
-                 int c = 0;
-                 try{
-                     c = Integer.parseInt(input);
-                 } catch (Exception ex){
-                     
-                 }
+                System.err.println("Bronze chest was clicked");
+                String input = JOptionPane.showInputDialog("What is the combination?");
+                int c = 0;
+                try {
+                    c = Integer.parseInt(input);
+                } catch (Exception ex) {
+                }
                 if (c == 1234) {
                     Message.show("Correct! You now have the bronze key");
                 } else {
@@ -127,7 +99,7 @@ public class GameState {
             }
         };
 
-        Item bronzeKey = new Item(0.7, 0.8, 0.075, 0.1,  "images/key_bronze.png") {
+        Item bronzeKey = new Item(0.7, 0.8, 0.075, 0.1, "images/key_bronze.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
@@ -136,42 +108,42 @@ public class GameState {
         };
 
 
-        Item silverKey = new Item(0.5, 0.5,  0.1, 0.1, "images/key_silver.png") {
+        Item silverKey = new Item(0.5, 0.5, 0.1, 0.1, "images/key_silver.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
             }
         };
 
-        Item goldKey = new Item(0.5, 0.5,  0.1, 0.1, "images/key_gold.png") {
+        Item goldKey = new Item(0.5, 0.5, 0.1, 0.1, "images/key_gold.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
             }
         };
-        
+
         bronzeChest.addItem(bronzeKey);
-        
-        
-        
+
+
+
         ROOMS[0].addItem(bronzeChest);
         ROOMS[0].addItem(bronzeKey);
 
-        
 
 
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
+
+
+
+
+
+
+
+
+
+
+
+
+
 //                // Fill Room 1 //
 //		ArrayList<Item> items = new ArrayList<Item>();
 //		// Create a box and the Bronze Key in Room 1. Put the key "inside" the box! //
@@ -208,35 +180,34 @@ public class GameState {
 //		// Fill Room 6 //
 //		Item bazooka = new Item("Bazooka", "Bazooka!!", ROOMS[5], tempImage);
 
-		
-	}
-        
-        
 
-	/** This method is better to be moved to another class later (Board/GameWindow/GameState?). Main should be only used to run the game **/
-	private void createRooms() {
-		
-		// Create Room1 //
-		ROOMS[0] = new Room (1);
-	
-		// Create Room2 //
-		ROOMS[1] = new Room (0, 2, 5);
-		
-		// Create Room3 //
-		ROOMS[2] = new Room (1, 3);
-			
-		// Create Room4 //
-		ROOMS[3] = new Room (2, 4);
-		
-		// Create Room5 //
-		ROOMS[4] = new Room (3);
-		
-		// Create Room6 //
-		ROOMS[5] = new Room (1, 6);
+    }
 
-                
-		// Create Room7: Safety! //
-		//safety = new Room ("safety", tempImage, "Door to Safety and Freedom!");
-	}
-	
+    /**
+     * This method is better to be moved to another class later (Board/GameWindow/GameState?). Main should be only used to run the game *
+     */
+    private void createRooms() {
+
+        // Create Room1 //
+        ROOMS[0] = new Room(1);
+
+        // Create Room2 //
+        ROOMS[1] = new Room(0, 2, 5);
+
+        // Create Room3 //
+        ROOMS[2] = new Room(1, 3);
+
+        // Create Room4 //
+        ROOMS[3] = new Room(2, 4);
+
+        // Create Room5 //
+        ROOMS[4] = new Room(3);
+
+        // Create Room6 //
+        ROOMS[5] = new Room(1, 6);
+
+
+        // Create Room7: Safety! //
+        //safety = new Room ("safety", tempImage, "Door to Safety and Freedom!");
+    }
 }

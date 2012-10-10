@@ -25,27 +25,28 @@ public class Item extends CustomComponent{
         this.w = w;
         this.h = h;
         image = ResourceLoader.openImage(imagePath);
+        this.setBorder(new LineBorder(Color.RED));
     }
     
     @Override
     public void paintContent(Graphics2D g) {
         if(image == null) return;
-        double sourceRatio = image.getWidth() / image.getHeight();
-        double currentRatio = getWidth() / getHeight();
-        
-        int w, h;
-        
-        if(sourceRatio > currentRatio){ // 
-            
-            w = getWidth();
-            h = (int)(sourceRatio * getWidth());
-            
-        } else {
-            w = (int)(sourceRatio * getHeight());
-            h = getHeight();
-        }
+//        double sourceRatio = image.getWidth() / image.getHeight();
+//        double currentRatio = getWidth() / getHeight();
+//        
+//        int w, h;
+//        
+//        if(sourceRatio > currentRatio){ // 
+//            w = getWidth();
+//            h = (int)(sourceRatio * getWidth());
+//            
+//        } else {
+//            w = (int)(sourceRatio * getHeight());
+//            h = getHeight();
+//        }
 
-        if(image != null) g.drawImage(image, 0, 0, w, h, null);
+        if(image != null) g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+        System.out.println("paint");
     }
 
     

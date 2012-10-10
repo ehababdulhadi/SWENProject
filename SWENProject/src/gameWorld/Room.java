@@ -3,8 +3,8 @@ package gameWorld;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.ImageIcon;
@@ -48,6 +48,14 @@ public class Room extends CustomComponent {
             this.add(doors[i]);
         }
         
+        this.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent e){
+                System.out.println("KEY PRESSED: " + KeyEvent.getKeyText(e.getKeyCode()));
+                GameState.sendToNetwork(e.getKeyCode());
+            }
+        });
+        
     }
 
     public void paintContent(Graphics2D g) {
@@ -57,36 +65,50 @@ public class Room extends CustomComponent {
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(0, 0, w, h);
 
+        g.setColor(Color.BLACK);
+        
+        int xFactor = 5;
+        int yFactor = 3;
 
         g.setColor(Color.BLACK);
 
-        //g.setStroke(new BasicStroke(2));
-        g.drawLine(0, 0, w, h);
-        g.drawLine(0, h, w, 0);
+        backWall = new Rectangle(w / xFactor, -1, w - w / xFactor * 2, h - h / yFactor + 1);
 
-
-        g.setColor(Color.LIGHT_GRAY);
-        g.fillRect(w / 4 + 1, h / 4 + 1, w / 2 - 2, h / 2 - 2);
-
-        g.setColor(Color.BLACK);
-
-        backWall = new Rectangle(w / 4, h / 4, w / 2, h / 2);
+        g.drawLine(0, backWall.y + backWall.height + h / yFactor / 2, backWall.x, backWall.y + backWall.height);
+        g.drawLine(w, backWall.y + backWall.height + h / yFactor / 2, backWall.x + backWall.width, backWall.y + backWall.height);
 
         g.draw(backWall);
 
-        int doorWidth = 100;
+        int doorWidth = w / 8;
         int doorHeight = h / 3;
 
 
-        for(int i = 0; i < doors.length; i++){
+        for (int i = 0; i < doors.length; i++) {
             if (i == 1) doors[1].setBounds(w / 4 / 2 - doorWidth / 2, h / 2, doorWidth, doorHeight);
             else if (i == 0) doors[0].setBounds(backWall.x + backWall.width / 2 - doorWidth / 2, backWall.y + backWall.height - doorHeight, doorWidth, doorHeight);
             else if (i == 2) doors[2].setBounds(w - w / 4 / 2 - doorWidth / 2, h / 2, doorWidth, doorHeight);
         }
-        
-        for(Item item : items){
-            item.setBounds((int)(item.x * w), (int)(item.y * h), (int)(item.w * w), (int)(item.h * h));
-            System.out.println(item.getBounds());
+
+        for (Item item : items) {
+
+            if (item.image == null) return;
+            double sourceRatio = item.image.getWidth() / item.image.getHeight();
+            double currentRatio = item.w * w / item.h * h;
+            
+                 //       item.setBounds((int)(item.x * w), (int)(item.y * h), (int)(item.w * w), (int)(item.h * h));
+
+
+            if (sourceRatio > currentRatio) { // 
+                w =  (int)(item.w * w);
+                h = (int) (sourceRatio * w);
+
+            } else {
+                w = (int) (sourceRatio * (int)(item.h * h));
+                h = (int)(item.h * h);
+            }
+
+            item.setBounds((int) (item.x * getWidth()), (int) (item.y * getHeight()) - h, w, h);
+
         }
     }
 
