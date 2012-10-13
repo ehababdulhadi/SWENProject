@@ -1,0 +1,10 @@
+package gameWorld;
+
+public class Door {
+	
+	
+	
+	
+	public Door (Room room, Room otherRoom){}
+
+}

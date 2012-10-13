@@ -22,7 +22,6 @@ public class StartMenu extends CustomComponent {
         JButton join = new JButton("Join Game");
         host.addActionListener(new ActionListener() {
 
-            @Override
             public void actionPerformed(ActionEvent e) {
                 // this person will be hosting, currently over localhost only
                 GameState.createNetworkThread(NetworkType.SERVER);
@@ -33,7 +32,6 @@ public class StartMenu extends CustomComponent {
 
         join.addActionListener(new ActionListener() {
 
-            @Override
             public void actionPerformed(ActionEvent e) {
                 // this person will be joining, currently over localhost only
                 GameState.createNetworkThread(NetworkType.CLIENT);

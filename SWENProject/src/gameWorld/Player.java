@@ -3,7 +3,7 @@ package gameWorld;
 
 import java.util.ArrayList;
 
-public class Player extends MovingObject{
+public class Player {
 	
 	String playerName;
 	private int livesRemaining = 3;
@@ -52,27 +52,22 @@ public class Player extends MovingObject{
 		this.playerRoom = playerRoom;
 	}
 
-    @Override
     public void receiveHit(int damage) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
     public int getFrameWidth() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
     public int getFrameHeight() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
     public int getCurrentFrame() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
     public boolean isBeingAttacked() {
         throw new UnsupportedOperationException("Not supported yet.");
     }

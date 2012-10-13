@@ -1,0 +1,54 @@
+package gameWorld;
+
+import java.util.Map;
+
+
+public class Item {
+	
+	private String itemName;
+	private String itemDescription;
+	private Room item_Location;
+	private int item_position;
+	
+	/**
+	 * Use this constructor to create a new Item.
+	 * @param owner Containing GameState object
+	 */
+	public Item(String itemName, String itemDescription, Room room, int position) {
+		
+		this.itemName = itemName;
+		this.itemDescription = itemDescription;
+		this.item_Location = room;
+		this.item_position = position;
+		
+	}
+	
+	public String getItem_name(){
+		return this.itemName;
+	}
+
+	public void setItem_descrpition(String item_descrpition) {
+		this.itemDescription = item_descrpition;
+	}
+
+	public String getItem_descrpition() {
+		return itemDescription;
+	}
+
+	public void setItem_Location(Room item_Location) {
+		this.item_Location = item_Location;
+	}
+
+	public Room getItem_Location() {
+		return item_Location;
+	}
+
+	public void setItem_position(int item_position) {
+		this.item_position = item_position;
+	}
+
+	public int getItem_position() {
+		return item_position;
+	}
+
+}

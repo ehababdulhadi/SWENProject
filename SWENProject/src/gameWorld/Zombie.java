@@ -3,7 +3,7 @@ package gameWorld;
 
 import javax.swing.ImageIcon;
 
-public class Zombie extends MovingObject  {
+public class Zombie   {
 	
 	private String enemy_name;
 	private Item itemCarriedByZombie;
@@ -29,43 +29,46 @@ public class Zombie extends MovingObject  {
 			}			
 		}
 
+	private void setLife(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	private void getLife(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private int getLife() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	private boolean isDead() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	public String getEnemy_name() {
 		return enemy_name;
 	}
 	
-	@Override public void setLife(int life) {
-		super.setLife(life);
-	}
 
-	@Override 
-	public void setPosX(int posX) {
-		super.setPosX(posX);
-	}
-
-	@Override 
-	public void setPosY(int posY) {
-		super.setPosY(posY);
-	}
-
-	@Override
 	public int getCurrentFrame() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
 	public boolean isBeingAttacked() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
 	public int getFrameWidth() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
 	public int getFrameHeight() {
 		// TODO Auto-generated method stub
 		return 0;
