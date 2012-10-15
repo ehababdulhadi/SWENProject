@@ -8,7 +8,7 @@ public enum Key {
 
     BRONZE(3),
     SILVER(5),
-    GOLD(6);
+    GOLD(4);
    
     public final int door;
     

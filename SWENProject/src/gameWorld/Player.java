@@ -10,6 +10,7 @@ public class Player {
 	private ArrayList<Item> playerItems = new ArrayList<Item>();
 	private Room playerRoom;
 	private Room previousRoom;
+	private Weapon weapon = new Weapon(5); //Fists
 	
 	public Player(String name, ArrayList<Item> items, Room room, Room prevRoom){
 		
@@ -43,6 +44,14 @@ public class Player {
 	public void setPlayerItems(ArrayList<Item> playerItems) {
 		this.playerItems = playerItems;
 	}
+	
+	public void addItem(Item item){
+		this.playerItems.add(item);
+	}
+	
+	public void addItems(ArrayList<Item> items){
+		this.playerItems.addAll(items);
+	}
 
 	public Room getPlayerRoom() {
 		return playerRoom;
@@ -52,6 +61,14 @@ public class Player {
 		this.playerRoom = playerRoom;
 	}
 
+	public void setWeapon(Weapon weapon){
+		this.weapon = weapon;
+	}
+	
+	public int useWeapon(){
+		return weapon.getDamageDealt();
+	}
+	
     public void receiveHit(int damage) {
         throw new UnsupportedOperationException("Not supported yet.");
     }

@@ -25,4 +25,8 @@ public class Chest extends Item{
     public void removeItem(Item item){
          contents.remove(item);
     }
+    
+    public void removeItems(){
+    		contents.clear();
+    }
 }
