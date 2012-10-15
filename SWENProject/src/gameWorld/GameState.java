@@ -1,6 +1,8 @@
 package gameWorld;
 
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 import main.Client;
 import main.NetworkThread;
@@ -8,15 +10,16 @@ import main.NetworkType;
 import main.Server;
 import userInterface.Message;
 
+/** A class to keep track of the status of the game (Players, Enemies, Items and Progress). **/
 public class GameState {
 
     public static final int NUMBER_OF_ROOMS = 6;
     public static Room[] ROOMS = new Room[NUMBER_OF_ROOMS];
     public static boolean[] LOCKS = new boolean[NUMBER_OF_ROOMS];
     private static NetworkThread network;
+    private Player player = new Player("Player", new ArrayList<Item>(), null, null );
 
     static {
-
         // unlock initial doors
         LOCKS[0] = true;
         LOCKS[1] = true;
@@ -83,21 +86,28 @@ public class GameState {
             @Override
             public void onMouseClick(MouseEvent e) {
                 System.err.println("Bronze chest was clicked");
-                String input = JOptionPane.showInputDialog("What is the combination?");
-                int c = 0;
-                try {
-                    c = Integer.parseInt(input);
-                } catch (Exception ex) {
-                }
-                if (c == 1234) {
-                    Message.show("Correct! You now have the bronze key");
-                } else {
-                    Message.show("Sorry that was incorrect.");
+                if(this.getContents().size()==0){
+                	Message.show("This chest has already been opened and contains no items");
+                }else{
+	                String input = JOptionPane.showInputDialog("What is the combination?");
+	                int c = 0;
+	                try {
+	                    c = Integer.parseInt(input);
+	                } catch (Exception ex) {
+	                }
+	                if (c == 1234) {
+	                    Message.show("Correct! You now have the bronze key");
+	                    player.addItems(this.getContents());
+	                    this.removeItems();
+	                    LOCKS[3] = true;
+	                } else {
+	                    Message.show("Sorry that was incorrect.");
+	                }
                 }
             }
         };
 
-        Item bronzeKey = new Item(0.7, 0.8, 0.075, 0.1, "images/key_bronze.png") {
+        Item bronzeKey = new Item(0.7, 0.8, 0.075, 0.1, "images/bronzekey.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
@@ -106,26 +116,63 @@ public class GameState {
         };
 
 
-        Item silverKey = new Item(0.5, 0.5, 0.1, 0.1, "images/key_silver.png") {
+        Item silverKey = new Item(0.81, 0.79, 0.3, 0.3, "images/silverkey.png") {
+
+            @Override
+            public void onMouseClick(MouseEvent e) {
+            	ROOMS[0].removeItem(this);
+            	LOCKS[5] = true;
+            	Message.show("You found a silver key!");
+            }
+        };
+
+        Item goldKey = new Item(0.5, 0.5, 0.1, 0.1, "images/goldkey.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
             }
         };
-
-        Item goldKey = new Item(0.5, 0.5, 0.1, 0.1, "images/key_gold.png") {
+        
+        String message3 = "Page 3: ";
+        Note note3 = new Note(0.8, 0.8, 0.7, 0.7, "images/note.png", message3) {
 
             @Override
             public void onMouseClick(MouseEvent e) {
+            	ROOMS[0].removeItem(this);
+            	Message.show("You picked up a note! It says:\n" + this.getMessage());
             }
         };
 
+        Item baseballBat = new Item(0.7, 0.85, 0.2, 0.2, "images/baseballbat.png") {
+
+            @Override
+            public void onMouseClick(MouseEvent e) {
+            	player.setWeapon(new Weapon(20));
+            	ROOMS[1].removeItem(this);
+            	Message.show("You have found a baseball bat. This could help defending against enemies");
+            }
+        };
+        
+        Item gun = new Item(0.2, 0.85, 0.2, 0.2, "images/gun.png") {
+
+            @Override
+            public void onMouseClick(MouseEvent e) {
+            	player.setWeapon(new Weapon(50));
+            	ROOMS[5].removeItem(this);
+            	Message.show("You have found a gun. You feel safer.");
+            }
+        };
+        
         bronzeChest.addItem(bronzeKey);
 
 
 
         ROOMS[0].addItem(bronzeChest);
-        ROOMS[0].addItem(bronzeKey);
+        ROOMS[0].addItem(note3);
+        ROOMS[0].addItem(silverKey);
+        ROOMS[1].addItem(baseballBat);
+        ROOMS[5].addItem(gun);
+        		//ROOMS[0].addItem(bronzeKey);
 
 
 

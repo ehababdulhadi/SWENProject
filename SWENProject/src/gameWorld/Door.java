@@ -11,6 +11,7 @@ import userInterface.CustomComponent;
 import userInterface.MainGameWindow;
 import userInterface.Message;
 
+/** Represents a Door. Links between 2 rooms, could be locked and need a specific type of key to open. **/
 public class Door extends CustomComponent{
 	
 //	private Room room1;
@@ -18,12 +19,12 @@ public class Door extends CustomComponent{
 	private boolean isLocked;
 	private String doorKey;
         
-            private boolean mouseOver;
+    private boolean mouseOver;
     private int destination;
 	
 	public Door (int destination){
             
-            this.destination = destination;
+        this.destination = destination;
 		this.isLocked = isLocked;
 		this.doorKey = doorKey;
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -31,7 +32,7 @@ public class Door extends CustomComponent{
         
     
      public void onMouseEntered(MouseEvent e){
-                     mouseOver = true;
+            mouseOver = true;
             repaint();
      }
     
