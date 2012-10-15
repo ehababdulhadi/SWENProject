@@ -21,6 +21,8 @@ public class GameState {
         LOCKS[0] = true;
         LOCKS[1] = true;
         LOCKS[2] = true;
+
+
     }
 
     public static void createNetworkThread(NetworkType type) {
