@@ -8,4 +8,8 @@
 		<item value="true" key="CREATE_TOPLEVEL"/>
 		<item value="false" key="CREATE_GETTER_SETTER"/>
 	</section>
+	<section name="InferTypeArguments">
+		<item value="true" key="leaveUnconstrainedRaw"/>
+		<item value="true" key="assumeCloneReturnsSameType"/>
+	</section>
 </section>

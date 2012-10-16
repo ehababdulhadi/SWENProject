@@ -10,7 +10,7 @@ import main.NetworkType;
 import main.Server;
 import userInterface.Message;
 
-/** A class to keep track of the status of the game (Players, Enemies, Items and Progress). **/
+/** A class to keep track of (and update) the status of the game (Players, Enemies, Items and Progress). **/
 public class GameState {
 
     public static final int NUMBER_OF_ROOMS = 6;
@@ -77,10 +77,30 @@ public class GameState {
          */
     }
 
+    private void createRooms() {
+
+        // Create Room1 //
+        ROOMS[0] = new Room(1);
+
+        // Create Room2 //
+        ROOMS[1] = new Room(0, 2, 5);
+
+        // Create Room3 //
+        ROOMS[2] = new Room(1, 3);
+
+        // Create Room4 //
+        ROOMS[3] = new Room(2, 4);
+
+        // Create Room5 //
+        ROOMS[4] = new Room(3);
+
+        // Create Room6 //
+        ROOMS[5] = new Room(1, 6);
+   
+    }
+    
     private void fillRooms() {
-        /**
-         * This will need to be replaced later with the right image to each item in the game *
-         */
+        
         Chest bronzeChest = new Chest(0.20, 0.8, 0.20, 0.20, "images/safe.png") {
 
             @Override
@@ -114,7 +134,6 @@ public class GameState {
                 System.err.println("Bronze key was clicked");
             }
         };
-
 
         Item silverKey = new Item(0.81, 0.79, 0.3, 0.3, "images/silverkey.png") {
 
@@ -153,6 +172,15 @@ public class GameState {
             }
         };
         
+        // Ehab - Trying Zombies //
+        Zombie zombie1 = new Zombie(0.5, 0.5, 0.1, 0.1, "images/zombie1.png"){
+        	
+        	 @Override
+             public void onMouseClick(MouseEvent e) {
+             	Message.show("Zombie1 Clicked!");
+             }
+        };
+        
         Item gun = new Item(0.2, 0.85, 0.2, 0.2, "images/gun.png") {
 
             @Override
@@ -164,8 +192,6 @@ public class GameState {
         };
         
         bronzeChest.addItem(bronzeKey);
-
-
 
         ROOMS[0].addItem(bronzeChest);
         ROOMS[0].addItem(note3);
@@ -225,34 +251,7 @@ public class GameState {
 //		// Fill Room 6 //
 //		Item bazooka = new Item("Bazooka", "Bazooka!!", ROOMS[5], tempImage);
 
-
     }
 
-    /**
-     * This method is better to be moved to another class later (Board/GameWindow/GameState?). Main should be only used to run the game *
-     */
-    private void createRooms() {
-
-        // Create Room1 //
-        ROOMS[0] = new Room(1);
-
-        // Create Room2 //
-        ROOMS[1] = new Room(0, 2, 5);
-
-        // Create Room3 //
-        ROOMS[2] = new Room(1, 3);
-
-        // Create Room4 //
-        ROOMS[3] = new Room(2, 4);
-
-        // Create Room5 //
-        ROOMS[4] = new Room(3);
-
-        // Create Room6 //
-        ROOMS[5] = new Room(1, 6);
-
-
-        // Create Room7: Safety! //
-        //safety = new Room ("safety", tempImage, "Door to Safety and Freedom!");
-    }
+   
 }

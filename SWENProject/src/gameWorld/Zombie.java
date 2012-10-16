@@ -2,9 +2,17 @@ package gameWorld;
 
 /** Represents a Zombie (Enemy). A Zombie can carry an item and the player need to carry a weapon to kill one. 
  * Some Zombies requires a special type of weapons to be killed. Ex: The boss Zombie will need to be killed with a Bazooka! **/
-import javax.swing.ImageIcon;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
-public class Zombie   {
+import javax.swing.ImageIcon;
+import javax.swing.border.LineBorder;
+
+import userInterface.CustomComponent;
+import userInterface.ResourceLoader;
+
+public class Zombie extends  CustomComponent{
 	
 	private String enemy_name;
 	private Item itemCarriedByZombie;
@@ -12,12 +20,32 @@ public class Zombie   {
 	private ImageIcon zombieImage;
 	private boolean isBoss = false;
 	
-	public Zombie (String name, Room room, ImageIcon image){
+	public final BufferedImage image;
+    public final double x, y, w, h; 
+	
+	/*public Zombie (String name, Room room, ImageIcon image){
 		
 		this.enemy_name = name;
 		this.roomOfZombie = room;
 		this.zombieImage = image;
+	}*/
+	
+public Zombie (double x, double y, double w, double h, String imagePath){
+		
+	this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    image = ResourceLoader.openImage(imagePath);
+    this.setBorder(new LineBorder(Color.RED));
 	}
+@Override
+public void paintContent(Graphics2D g) {
+    
+	if(image == null) return;
+    if(image != null) g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+    System.out.println("paint");
+}
 	
 	/**
 	 * Is called if this enemy is attacked by a player
