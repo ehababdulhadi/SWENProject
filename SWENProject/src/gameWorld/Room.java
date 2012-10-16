@@ -29,7 +29,7 @@ public class Room extends CustomComponent {
     
     
     private Door[] doors;
-        private ArrayList<Drawable> drawables = new ArrayList<Drawable>();
+    private ArrayList<Drawable> drawables = new ArrayList<Drawable>();
 
     public Room(int... destinations) {
 //		this.roomName = name;

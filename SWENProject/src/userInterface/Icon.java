@@ -1,33 +1,30 @@
-package gameWorld;
+package userInterface;
 
-import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import javax.swing.border.LineBorder;
 import userInterface.CustomComponent;
 import userInterface.ResourceLoader;
 
-public class Drawable extends CustomComponent{
+public class Icon extends CustomComponent{
 
     public final BufferedImage image;
     private final String imagePath;
-    public final double x, y, w, h;
+    public final int x, y, w, h;
     
     
-    public Drawable(double x, double y, double w, double h, String imagePath){
+    public Icon(int x, int y, int w, int h, String imagePath){
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
         this.imagePath = imagePath;
         image = ResourceLoader.openImage(imagePath);
-        //this.setBorder(new LineBorder(Color.RED));
     }
     
     @Override
     public void paintContent(Graphics2D g) {
-        if(image != null) g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		System.out.println("Got here");
+        if(image != null) g.drawImage(image, x, y, w, h, null);
     }
     
     public String toString(){
