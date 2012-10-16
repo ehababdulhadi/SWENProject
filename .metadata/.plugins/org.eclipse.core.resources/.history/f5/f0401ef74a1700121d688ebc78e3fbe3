@@ -21,7 +21,6 @@ public class Zombie extends  CustomComponent{
 	private boolean isBoss = false;
 	
 	public final BufferedImage image;
-	private final String imagePath;
     public final double x, y, w, h; 
 	
 	/*public Zombie (String name, Room room, ImageIcon image){
@@ -31,18 +30,14 @@ public class Zombie extends  CustomComponent{
 		this.zombieImage = image;
 	}*/
 	
-public Zombie (double x, double y, double w, double h, String imagePath) {
+public Zombie (double x, double y, double w, double h, String imagePath){
 		
 	this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
-    this.imagePath = imagePath;
     image = ResourceLoader.openImage(imagePath);
-	}
-
-	public String toString(){
-    return "Zombie[imagePath=" + imagePath + "]";
+    this.setBorder(new LineBorder(Color.RED));
 	}
 
 	@Override

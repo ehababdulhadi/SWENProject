@@ -93,7 +93,7 @@ public class Room extends CustomComponent {
 
         for (Item item : items) {
             
-            int iw, ih;
+            public int iw, ih;
 
             if (item.image == null) return;
        
@@ -118,9 +118,9 @@ public class Room extends CustomComponent {
 
         }
         
-        // Drawing the Zombies (if there is one!)  //
+        // Drawing Zombies:  //
         if (this.getZombie() != null)
-        	this.getZombie().setBounds((int) (this.getZombie().x * getWidth()), (int) (this.getZombie().y * getHeight()) - 2, 1, 1);
+        	this.getZombie().setBounds((int) (this.getZombie().x * getWidth()), (int) (this.getZombie().y * getHeight()) - ih, iw, ih);
     }
 
     public void addItem(Item item) {

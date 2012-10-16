@@ -173,7 +173,7 @@ public class GameState {
         };
         
         // Ehab - Trying Zombies //
-        Item zombie1 = new Item(0.2, 0.2, 0.2, 0.2, "images/zombie1.png"){
+        Zombie zombie1 = new Zombie(0.5, 0.5, 0.1, 0.1, "images/zombie1.png"){
         	
         	 @Override
              public void onMouseClick(MouseEvent e) {
@@ -198,8 +198,8 @@ public class GameState {
         ROOMS[0].addItem(silverKey);
         ROOMS[1].addItem(baseballBat);
         ROOMS[5].addItem(gun);
-        ROOMS[0].addItem(zombie1);
-        //ROOMS[0].addItem(bronzeKey);
+        ROOMS[3].setZombie(zombie1);
+        		//ROOMS[0].addItem(bronzeKey);
 
 
 

@@ -199,7 +199,7 @@ public class GameState {
         ROOMS[1].addItem(baseballBat);
         ROOMS[5].addItem(gun);
         ROOMS[0].addItem(zombie1);
-        //ROOMS[0].addItem(bronzeKey);
+        		//ROOMS[0].addItem(bronzeKey);
 
 
 

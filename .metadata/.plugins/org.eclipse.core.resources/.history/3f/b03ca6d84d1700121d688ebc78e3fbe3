@@ -31,18 +31,18 @@ public class Zombie extends  CustomComponent{
 		this.zombieImage = image;
 	}*/
 	
-public Zombie (double x, double y, double w, double h, String imagePath) {
+public Zombie (double x, double y, double w, double h, String imagePath){
 		
 	this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
-    this.imagePath = imagePath;
     image = ResourceLoader.openImage(imagePath);
+    this.setBorder(new LineBorder(Color.RED));
 	}
 
 	public String toString(){
-    return "Zombie[imagePath=" + imagePath + "]";
+    return "Item[imagePath=" + imagePath + "]";
 	}
 
 	@Override
