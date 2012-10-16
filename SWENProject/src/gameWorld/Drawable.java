@@ -16,8 +16,12 @@ public class Drawable extends CustomComponent{
     private final String imagePath;
     public final double x, y, w, h;
     
+<<<<<<< HEAD
     private ArrayList<Drawable> contents = new ArrayList<Drawable>();
 	
+=======
+    
+>>>>>>> e5415ca9f7f6e8e9892acba7f4ecd07cd38dcaf5
     public Drawable(double x, double y, double w, double h, String imagePath){
         this.x = x;
         this.y = y;
@@ -39,5 +43,9 @@ public class Drawable extends CustomComponent{
     
     public String toString(){
         return "Drawable[imagePath=" + imagePath + "]";
+    }
+    
+    public String getImage(){
+    	return this.imagePath;
     }
 }

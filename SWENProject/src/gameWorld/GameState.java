@@ -191,7 +191,7 @@ public class GameState {
         };
         
         String message3 = "Page 3: I'm the last one left";
-        note3 = new Note(0.8, 0.8, 0.7, 0.7, "images/note.png", message3) {
+        note3 = new Note(0.8, 0.8, 0.1, 0.1, "images/note.png", message3) {
 
             @Override
             public void onMouseClick(MouseEvent e) {
