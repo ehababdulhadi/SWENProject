@@ -162,6 +162,7 @@ public class GameState {
                     }
                     if (c == 1234) {
                         Message.show("Correct! You now have the bronze key");
+                        MainGameWindow.getInventory().addItem(bronzeKey);
                         player.addItems(this.getContents());
                         this.removeItems();
                         LOCKS[3] = true;
@@ -208,6 +209,7 @@ public class GameState {
             public void onMouseClick(MouseEvent e) {
                 ROOMS[0].removeItem(this);
                 sendToNetwork(103);
+                MainGameWindow.getInventory().addItem(this);
                 Message.show("You picked up a note! It says:\n" + this.getMessage());
             }
         };
@@ -259,6 +261,7 @@ public class GameState {
             public void onMouseClick(MouseEvent e) {
                 player.setWeapon(new Weapon(50));
                 ROOMS[5].removeItem(this);
+                MainGameWindow.getInventory().addItem(this);
                 sendToNetwork(105);
                 Message.show("You have found a gun. You feel safer.");
             }
@@ -279,6 +282,7 @@ public class GameState {
                     taken = true;
                     ROOMS[0].removeItem(silverKey);
                     LOCKS[5] = true;
+                    MainGameWindow.getInventory().addItem(silverKey);
                     player.addItem(silverKey);
                     sendToNetwork(101);
                 } else {
