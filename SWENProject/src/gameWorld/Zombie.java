@@ -5,6 +5,7 @@ package gameWorld;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
@@ -12,13 +13,20 @@ import javax.swing.border.LineBorder;
 import userInterface.CustomComponent;
 import userInterface.ResourceLoader;
 
+
+
 public class Zombie extends Drawable{
+	
+	private ArrayList<Drawable> contents = new ArrayList<Drawable>();
 
 	public Zombie(double x, double y, double w, double h, String imagePath) {
 		super(x, y, w, h, imagePath);
 		// TODO Auto-generated constructor stub
 	}
 	
+	 public void addItem(Drawable drawable){
+	        contents.add(drawable);
+	    }
 	/*private String enemy_name;
 	private Drawable itemCarriedByZombie;
 	private Room roomOfZombie;

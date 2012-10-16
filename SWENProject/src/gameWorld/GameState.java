@@ -129,6 +129,8 @@ public class GameState {
     private static Note note3;
     private static Drawable bricks;
     private static Drawable zombie1;
+    private static Drawable zombie2;
+    private static Drawable zombie3;
     
     private void fillRooms() {
         
@@ -211,13 +213,29 @@ public class GameState {
         };
         
         // Ehab - Trying Zombies //
-         zombie1 = new Zombie(0.5, 0.5, 0.3, 0.3, "images/zombie1.png"){
+         zombie1 = new Drawable(0.6, 0.8, 0.6, 0.6, "images/brick.png"){
             
              @Override
              public void onMouseClick(MouseEvent e) {
-                 Message.show("Zombie1 Clicked!");
+                 System.out.println("Zombie1 Clicked!");
              }
         };
+        
+        zombie2 = new Drawable(0.6, 0.8, 0.2, 0.6, "images/brick.png"){
+            
+            @Override
+            public void onMouseClick(MouseEvent e) {
+            	System.out.println("Zombie2 Clicked!");
+            }
+       };
+       
+       zombie3 = new Drawable(0.6, 0.8, 0.2, 0.6, "images/brick.png"){
+           
+           @Override
+           public void onMouseClick(MouseEvent e) {
+        	   System.out.println("Zombie3 Clicked!");
+           }
+      };
         
         gun = new Drawable(0.2, 0.85, 0.2, 0.2, "images/gun.png") {
 
@@ -248,7 +266,9 @@ public class GameState {
             }
         };
         
-        
+        zombie1.addItem(note3);
+        zombie2.addItem(note3);
+        zombie3.addItem(goldKey);
         bronzeChest.addItem(bronzeKey);
 
         ROOMS[0].addItem(bronzeChest);
@@ -256,47 +276,11 @@ public class GameState {
         ROOMS[0].addItem(bricks);
         ROOMS[1].addItem(baseballBat);
         ROOMS[5].addItem(gun);
-        ROOMS[0].addItem(zombie1);
-                //ROOMS[0].addItem(bronzeKey);
-
-
-
-
-//                // Fill Room 1 //
-//		ArrayList<Drawablw> items = new ArrayList<Drawablw>();
-//		// Create a box and the Bronze Key in Room 1. Put the key "inside" the box! //
-//		Drawablw box = new Drawablw("Box", "You need a 4 digit pin to open this box!", ROOMS[0], tempImage);
-//		box.setIsBox(true); // Declaring this Drawablw as a box that contains other items //
-//		Drawablw bronzeKey = new Drawablw ("Bronze Key", "Bronze Key!", ROOMS[0], tempImage);
-//		box.getBoxItems().add(bronzeKey);
-//		box.boxSetLocked(true); // Lock the box! //
-//		// Create the silver Key and Note //
-//		Drawablw silverKey = new Drawablw("Silver Key", "Silver Key!", ROOMS[0], tempImage);
-//		silverKey.setHidden(true);
-//		Drawablw noteOfRoom1 = new Drawablw("note1", "Tell the Game Story to Player", ROOMS[0], tempImage);
-//		// Add all items to Room 1 //
-//		ROOMS[0].getItemsOfTheRoom().addAll(items);
-//		
-//		// Fill Room 2 //
-//		Drawablw gun = new Drawablw("Gun", "A Gun! Could be used to kill avarage sized zombies!", ROOMS[1], tempImage);
-//		
-//		// Fill Room 3 //
-//		Drawablw room1BoxCodeNumber = new Drawablw("Code of Box in Room 1", "1234!",  ROOMS[2], tempImage);
-//		Zombie room3Zombie = new Zombie("Room3 Zombie", ROOMS[2], tempImage);
-//		room3Zombie.setItemCarriedByZombie(room1BoxCodeNumber);
-//		
-//		// Fill Room 4 //
-//		Drawablw silverKeyNote = new Drawablw("Silver Key Note", "Silver Key is Hidden in Room 1 behind the brick!", ROOMS[3], tempImage);
-//		Zombie room4Zombie = new Zombie("Room4 Zombie", ROOMS[3], tempImage);
-//		room4Zombie.setItemCarriedByZombie(silverKeyNote);
-//		
-//		// Fill Room 5 //
-//		Drawablw goldenKey = new Drawablw("Golden Key", "Golden Key!", ROOMS[4], tempImage);
-//		Zombie room5Zombie = new Zombie("Room5 Zombie", ROOMS[4], tempImage);
-//		room5Zombie.setItemCarriedByZombie(goldenKey);
-//		
-//		// Fill Room 6 //
-//		Drawablw bazooka = new Drawablw("Bazooka", "Bazooka!!", ROOMS[5], tempImage);
+        // Add Zombies //
+        ROOMS[3].addItem(zombie1);
+        ROOMS[4].addItem(zombie2);
+        ROOMS[5].addItem(zombie3);
+        
 
     }
 

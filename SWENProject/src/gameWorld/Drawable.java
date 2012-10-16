@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
 import javax.swing.border.LineBorder;
 import userInterface.CustomComponent;
 import userInterface.ResourceLoader;
@@ -14,6 +16,8 @@ public class Drawable extends CustomComponent{
     private final String imagePath;
     public final double x, y, w, h;
     
+    private ArrayList<Drawable> contents = new ArrayList<Drawable>();
+	
     public Drawable(double x, double y, double w, double h, String imagePath){
         this.x = x;
         this.y = y;
@@ -22,6 +26,10 @@ public class Drawable extends CustomComponent{
         this.imagePath = imagePath;
         image = ResourceLoader.openImage(imagePath);
         //this.setBorder(new LineBorder(Color.RED));
+    }
+    
+    public void addItem(Drawable drawable){
+        contents.add(drawable);
     }
     
     @Override
