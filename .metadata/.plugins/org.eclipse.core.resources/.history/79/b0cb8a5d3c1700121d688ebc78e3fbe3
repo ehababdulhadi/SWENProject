@@ -198,7 +198,7 @@ public class GameState {
         ROOMS[0].addItem(silverKey);
         ROOMS[1].addItem(baseballBat);
         ROOMS[5].addItem(gun);
-        ROOMS[3].setZombie(zombie1);
+        ROOMS[3].addItem(zombie1);
         		//ROOMS[0].addItem(bronzeKey);
 
 

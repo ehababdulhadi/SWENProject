@@ -163,7 +163,7 @@ public class Room extends CustomComponent {
         return zombieOfTheRoom;
     }
     
-    public void setZombie(Zombie zombie) {
+    public Zombie setZombie(Zombie zombie) {
        this.zombieOfTheRoom = zombie;
     }
 

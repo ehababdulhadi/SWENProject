@@ -117,8 +117,6 @@ public class Room extends CustomComponent {
         this.add(item);
         repaint();
     }
-    
-   
 
     public void removeItem(Item item) {
         items.remove(item);
@@ -161,10 +159,6 @@ public class Room extends CustomComponent {
 
     public Zombie getZombie() {
         return zombieOfTheRoom;
-    }
-    
-    public void setZombie(Zombie zombie) {
-       this.zombieOfTheRoom = zombie;
     }
 
     public boolean isHasZombie() {
