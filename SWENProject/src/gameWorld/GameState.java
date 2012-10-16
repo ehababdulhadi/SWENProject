@@ -58,28 +58,37 @@ public class GameState {
     }
 
     public static void readFromNetwork(int data) {
-        System.out.println("Read from network: " + data);
-        switch (data) {
+    	 System.out.println("Read from network: " + data);
+         switch (data) {
 
-            case 100:
-                bronzeChest.removeItems();
-                LOCKS[3] = true;
-                break;
-            case 101:
-                ROOMS[0].removeItem(silverKey);
-                break;
-            case 102:
-                break;
-            case 103:
-                ROOMS[0].removeItem(note3);
-                break;
-            case 104:
-                ROOMS[1].removeItem(baseballBat);
-                break;
-            case 105:
-                ROOMS[5].removeItem(gun);
-                break;
-        }
+             case 100:
+                 bronzeChest.removeItems();
+                 LOCKS[3] = true;
+                 break;
+             case 101:
+                 ROOMS[0].removeItem(silverKey);
+                 break;
+             case 102:
+                 break;
+             case 103:
+                 ROOMS[0].removeItem(note3);
+                 break;
+             case 104:
+                 ROOMS[1].removeItem(baseballBat);
+                 break;
+             case 105:
+                 ROOMS[5].removeItem(gun);
+                 break;
+             case 200:
+                 ROOMS[2].removeItem(zombie1);
+                 break;
+             case 300:
+                 ROOMS[3].removeItem(zombie2);
+                 break;
+             case 400:
+                 ROOMS[5].removeItem(zombie3);
+                 break;
+         }
     }
 
     public static void sendToNetwork(int data) {
@@ -136,6 +145,7 @@ public class GameState {
     private static RoomComponent goldKey;
     private static RoomComponent baseballBat;
     private static RoomComponent gun;
+    private static RoomComponent fang; 
     private static RoomComponent note3;
     private static RoomComponent bricks;
     private static RoomComponentContainer zombie1;
@@ -162,6 +172,7 @@ public class GameState {
                     }
                     if (c == 1234) {
                         Message.show("Correct! You now have the bronze key");
+                        MainGameWindow.getInventory().addItem(bronzeKey);
                         player.addItems(this.getContents());
                         this.removeItems();
                         LOCKS[3] = true;
@@ -209,11 +220,13 @@ public class GameState {
             public void onMouseClick(MouseEvent e) {
                 ROOMS[0].removeItem(this);
                 sendToNetwork(103);
+
                 Message.show("You picked up a note! It says:\n" + message3);
             }
         };
 
-
+        fang = new RoomComponent(0.7, 0.85, 0.2, 0.2, "images/Fang.png") ;
+        
         baseballBat = new RoomComponent(0.7, 0.85, 0.2, 0.2, "images/baseballbat.png") {
             @Override
             public void onMouseClick(MouseEvent e) {
@@ -226,27 +239,55 @@ public class GameState {
         };
 
         // Ehab - Trying Zombies //
-        zombie1 = new Zombie(0.6, 0.8, 0.6, 0.6, "images/zombie.png") {
+        zombie1 = new RoomComponentContainer(0.6, 0.8, 0.6, 0.6, "images/zombie1.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
                 System.out.println("Zombie1 Clicked!");
+                this.setHealth(this.getHealth()-player.useWeapon());
+                if(this.isDead()){
+                    ROOMS[2].removeItem(this);
+                    sendToNetwork(200);
+                    Message.show("You killed the zombie! It drops a note that with a 4 digit code on it. 1337");
+                }
             }
         };
 
-        zombie2 = new Zombie(0.6, 0.8, 0.2, 0.6, "images/zombie.png") {
+
+
+
+
+        zombie2 = new RoomComponentContainer(0.6, 0.8, 0.2, 0.6, "images/zombie2.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
                 System.out.println("Zombie2 Clicked!");
+                System.out.println("Zombie1 Clicked!");
+                this.setHealth(this.getHealth()-player.useWeapon());
+                if(this.isDead()){
+                    ROOMS[3].removeItem(this);
+                    MainGameWindow.getInventory().addItem(fang);
+                    player.aquireTooth();
+                    sendToNetwork(300);
+                    Message.show("You killed the zombie! You rip out a tooth and save it for later");
+                }
             }
         };
 
-        zombie3 = new Zombie(0.6, 0.8, 0.2, 0.6, "images/zombie.png") {
+        zombie3 = new RoomComponentContainer(0.6, 0.8, 0.2, 0.6, "images/zombie3.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
                 System.out.println("Zombie3 Clicked!");
+                System.out.println("Zombie1 Clicked!");
+                this.setHealth(this.getHealth()-player.useWeapon());
+                if(this.isDead()){
+                    ROOMS[5].removeItem(this);
+                    sendToNetwork(400);
+                    LOCKS[4] = true;
+                    MainGameWindow.getInventory().addItem(goldKey);                   
+                    Message.show("You killed the zombie! He was holding a golden key. You pick it up");
+                }
             }
         };
 
@@ -256,6 +297,7 @@ public class GameState {
             public void onMouseClick(MouseEvent e) {
                 player.setWeapon(new Weapon(50));
                 ROOMS[5].removeItem(this);
+                MainGameWindow.getInventory().addItem(this);
                 sendToNetwork(105);
                 Message.show("You have found a gun. You feel safer.");
             }
@@ -276,7 +318,7 @@ public class GameState {
                     taken = true;
                     ROOMS[0].removeItem(silverKey);
                     LOCKS[5] = true;
-                    player.addItem(silverKey);
+                    MainGameWindow.getInventory().addItem(silverKey);
                     sendToNetwork(101);
                 } else {
                     // do nothing.

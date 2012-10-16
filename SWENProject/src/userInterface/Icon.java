@@ -23,7 +23,6 @@ public class Icon extends CustomComponent{
     
     @Override
     public void paintContent(Graphics2D g) {
-		System.out.println("Got here");
         if(image != null) g.drawImage(image, x, y, w, h, null);
     }
     
