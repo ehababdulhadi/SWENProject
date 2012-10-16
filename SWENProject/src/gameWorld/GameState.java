@@ -226,7 +226,7 @@ public class GameState {
         };
 
         // Ehab - Trying Zombies //
-        zombie1 = new Zombie(0.6, 0.8, 0.6, 0.6, "images/brick.png") {
+        zombie1 = new Zombie(0.6, 0.8, 0.6, 0.6, "images/zombie.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
@@ -234,7 +234,7 @@ public class GameState {
             }
         };
 
-        zombie2 = new Zombie(0.6, 0.8, 0.2, 0.6, "images/brick.png") {
+        zombie2 = new Zombie(0.6, 0.8, 0.2, 0.6, "images/zombie.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
@@ -242,7 +242,7 @@ public class GameState {
             }
         };
 
-        zombie3 = new Zombie(0.6, 0.8, 0.2, 0.6, "images/brick.png") {
+        zombie3 = new Zombie(0.6, 0.8, 0.2, 0.6, "images/zombie.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
