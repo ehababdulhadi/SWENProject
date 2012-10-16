@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 import userInterface.CustomComponent;
 
 /**
- * Represents a Room, which can contain a Player, Zombie, Item and Doors
+ * Represents a Room, which can contain a Player, Zombie, Drawable and Doors
  *
  */
 public class Room extends CustomComponent {
@@ -29,12 +29,12 @@ public class Room extends CustomComponent {
     
     
     private Door[] doors;
-        private ArrayList<Item> items = new ArrayList<Item>();
+        private ArrayList<Drawable> drawables = new ArrayList<Drawable>();
 
     public Room(int... destinations) {
 //		this.roomName = name;
 //		this.roomBackground = background;
-        //this.setItemsOfTheRoom(items);
+        //this.setItemsOfTheRoom(drawables);
         //this.playersInTheRoom = players;
         //this.zombieOfTheRoom = zombie;
         //this.doorsOfTheRoom = doors;
@@ -91,25 +91,25 @@ public class Room extends CustomComponent {
             else if (i == 2) doors[2].setBounds(w - w / 4 / 2 - pc / 2, backWall.y + backWall.height - doorHeight + doorHeight / 8, doorWidth - pc, doorHeight + doorHeight / 4);
         }
 
-        for (Item item : items) {
+        for (Drawable drawable : drawables) {
             
             int iw, ih;
 
-            if (item.image == null) return;
+            if (drawable.image == null) return;
        
-            double imageRatio = item.image.getWidth() / item.image.getHeight();
-            double componentRatio = (item.w * w) / (item.h * h);
+            double imageRatio = drawable.image.getWidth() / drawable.image.getHeight();
+            double componentRatio = (drawable.w * w) / (drawable.h * h);
             
             if (imageRatio > componentRatio) { // 
-                iw = (int)(item.w * w);
+                iw = (int)(drawable.w * w);
                 ih = (int)(iw / imageRatio);
 
             } else {
-                iw = (int)(imageRatio * item.h * h);
-                ih = (int)(item.h * h);
+                iw = (int)(imageRatio * drawable.h * h);
+                ih = (int)(drawable.h * h);
             }
 
-            item.setBounds((int) (item.x * getWidth()), (int) (item.y * getHeight()) - ih, iw, ih);
+            drawable.setBounds((int) (drawable.x * getWidth()), (int) (drawable.y * getHeight()) - ih, iw, ih);
 
         }
         
@@ -118,17 +118,17 @@ public class Room extends CustomComponent {
         	this.getZombie().setBounds((int) (this.getZombie().x * getWidth()), (int) (this.getZombie().y * getHeight()) - 2, 1, 1);
     }
 
-    public void addItem(Item item) {
-        items.add(item);
-        this.add(item);
+    public void addItem(Drawable drawable) {
+        drawables.add(drawable);
+        this.add(drawable);
         repaint();
     }
     
    
 
-    public void removeItem(Item item) {
-        items.remove(item);
-        this.remove(item);
+    public void removeItem(Drawable drawable) {
+        drawables.remove(drawable);
+        this.remove(drawable);
         repaint();
     }
     
@@ -189,11 +189,11 @@ public class Room extends CustomComponent {
         this.doorsOfTheRoom = doorsOfTheRoom;
     }
 
-    public ArrayList<Item> getItemsOfTheRoom() {
-        return items;
+    public ArrayList<Drawable> getItemsOfTheRoom() {
+        return drawables;
     }
 
-    public void setItemsOfTheRoom(ArrayList<Item> itemsOfTheRoom) {
-        this.items = itemsOfTheRoom;
+    public void setItemsOfTheRoom(ArrayList<Drawable> itemsOfTheRoom) {
+        this.drawables = itemsOfTheRoom;
     }
 }

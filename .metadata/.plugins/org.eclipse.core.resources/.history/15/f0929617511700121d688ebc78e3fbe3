@@ -1,0 +1,32 @@
+package gameWorld;
+
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Rudi Theunissen
+ */
+public class Chest extends Drawablw{
+    
+    private ArrayList<Drawablw> contents = new ArrayList<Drawablw>();
+    
+    public Chest(double x, double y, double w, double h, String imagePath) {
+        super(x, y, w, h, imagePath);
+    }
+    
+    public ArrayList<Drawablw> getContents(){
+        return contents;
+    }
+    
+    public void addItem(Drawablw drawablw){
+        contents.add(drawablw);
+    }
+    
+    public void removeItem(Drawablw drawablw){
+         contents.remove(drawablw);
+    }
+    
+    public void removeItems(){
+    		contents.clear();
+    }
+}

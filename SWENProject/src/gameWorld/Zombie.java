@@ -12,10 +12,15 @@ import javax.swing.border.LineBorder;
 import userInterface.CustomComponent;
 import userInterface.ResourceLoader;
 
-public class Zombie extends  CustomComponent{
+public class Zombie extends Drawable{
+
+	public Zombie(double x, double y, double w, double h, String imagePath) {
+		super(x, y, w, h, imagePath);
+		// TODO Auto-generated constructor stub
+	}
 	
-	private String enemy_name;
-	private Item itemCarriedByZombie;
+	/*private String enemy_name;
+	private Drawable itemCarriedByZombie;
 	private Room roomOfZombie;
 	private ImageIcon zombieImage;
 	private boolean isBoss = false;
@@ -24,12 +29,12 @@ public class Zombie extends  CustomComponent{
 	private final String imagePath;
     public final double x, y, w, h; 
 	
-	/*public Zombie (String name, Room room, ImageIcon image){
+	public Zombie (String name, Room room, ImageIcon image){
 		
 		this.enemy_name = name;
 		this.roomOfZombie = room;
 		this.zombieImage = image;
-	}*/
+	}
 	
 public Zombie (double x, double y, double w, double h, String imagePath) {
 		
@@ -50,14 +55,14 @@ public Zombie (double x, double y, double w, double h, String imagePath) {
     if(image != null) g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 	}
 	
-	/**
+	*//**
 	 * Is called if this enemy is attacked by a player
 	 * Works out the damage allocated and removes it from the enemies health
-	 */
+	 *//*
 	public void receiveHit(int damage){ 
 		this.setLife(getLife()-damage);
 		if (isDead()){
-			/** change enemy's image to dead **/
+			*//** change enemy's image to dead **//*
 			}			
 		}
 
@@ -106,11 +111,11 @@ public Zombie (double x, double y, double w, double h, String imagePath) {
 		return 0;
 	}
 
-	public Item getItemCarriedByZombie() {
+	public Drawable getItemCarriedByZombie() {
 		return itemCarriedByZombie;
 	}
 
-	public void setItemCarriedByZombie(Item itemCarriedByZombie) {
+	public void setItemCarriedByZombie(Drawable itemCarriedByZombie) {
 		this.itemCarriedByZombie = itemCarriedByZombie;
 	}
 
@@ -128,5 +133,5 @@ public Zombie (double x, double y, double w, double h, String imagePath) {
 
 	public void setIsBoss(boolean isBoss) {
 		this.isBoss = isBoss;
-	}	
+	}	*/
 }

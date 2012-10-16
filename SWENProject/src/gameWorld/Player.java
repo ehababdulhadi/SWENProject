@@ -8,19 +8,30 @@ public class Player {
 	
 	String playerName;
 	private int livesRemaining = 3;
-	private ArrayList<Item> playerItems = new ArrayList<Item>();
+	private ArrayList<Drawable> playerItems = new ArrayList<Drawable>();
 	private Room playerRoom;
 	private Room previousRoom;
 	private Weapon weapon = new Weapon(5); //Fists
 	
-	public Player(String name, ArrayList<Item> items, Room room, Room prevRoom){
+	public Player(String name, ArrayList<Drawable> drawables, Room room, Room prevRoom){
 		
 		this.playerName = name;
-		this.playerItems = items;
+		this.playerItems = drawables;
 		this.playerRoom = room;
 		this.previousRoom = prevRoom;
 		
 	}
+	
+	 private boolean hasZombieTooth =false;
+
+	     public void aquireTooth(){
+	         hasZombieTooth = true;
+	     }
+	     
+	     public boolean hasZombieTooth(){
+	         return hasZombieTooth;
+	     }
+
 
 	public Room getPreviousRoom() {
 		return previousRoom;
@@ -38,20 +49,20 @@ public class Player {
 		this.livesRemaining = livesRemaining;
 	}
 
-	public ArrayList<Item> getPlayerItems() {
+	public ArrayList<Drawable> getPlayerItems() {
 		return playerItems;
 	}
 
-	public void setPlayerItems(ArrayList<Item> playerItems) {
+	public void setPlayerItems(ArrayList<Drawable> playerItems) {
 		this.playerItems = playerItems;
 	}
 	
-	public void addItem(Item item){
-		this.playerItems.add(item);
+	public void addItem(Drawable drawable){
+		this.playerItems.add(drawable);
 	}
 	
-	public void addItems(ArrayList<Item> items){
-		this.playerItems.addAll(items);
+	public void addItems(ArrayList<Drawable> drawables){
+		this.playerItems.addAll(drawables);
 	}
 
 	public Room getPlayerRoom() {
