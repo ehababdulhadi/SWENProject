@@ -8,7 +8,7 @@ public class Player {
 	
 	String playerName;
 	private int livesRemaining = 3;
-	private boolean hasTooth = false;
+
 	private ArrayList<RoomComponent> playerItems = new ArrayList<RoomComponent>();
 
 	private Room playerRoom;
@@ -94,14 +94,6 @@ public class Player {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-	public void aquireTooth() {
-		// TODO Auto-generated method stub
-		this.hasTooth = true;
-	}
-	
-   public boolean hasZombieTooth (){
-	   return this.hasTooth;
-   } 
 	
 }
 

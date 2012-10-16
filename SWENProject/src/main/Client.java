@@ -2,12 +2,10 @@ package main;
 
 import java.net.Socket;
 
-import javax.swing.JOptionPane;
-
 public class Client extends NetworkThread {
 
     public void run() {
-    	 String ipAddress = JOptionPane.showInputDialog("Inter and IP Address");
+        String ipAddress = "localhost";
 
         try {
             socket = new Socket(ipAddress, PORT);

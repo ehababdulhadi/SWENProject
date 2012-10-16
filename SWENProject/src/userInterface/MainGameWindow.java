@@ -16,19 +16,25 @@ public class MainGameWindow extends JFrame {
     private static final ViewSwitcher switcher = new ViewSwitcher();
     private static final InventoryPanel inventory = new InventoryPanel();
     
+    private static Container content;
+    
     public static void switchToRoom(int room){
         switcher.switchTo(room % GameState.ROOMS.length);
+    }
+    
+    public static void addInventory(){
+       content.add(inventory, BorderLayout.SOUTH);
     }
 
     public MainGameWindow() {
         
-        Container content = getContentPane();
+        content = getContentPane();
         
 
         switcher.setHost(content);
         
         switcher.registerView(new StartMenu(), "Menu");
-        content.add(inventory, BorderLayout.SOUTH);
+     
         
         for(int i = 0; i < GameState.ROOMS.length; i++){
             switcher.registerView(GameState.ROOMS[i], i);

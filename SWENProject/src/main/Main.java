@@ -1,6 +1,6 @@
 package main;
 
-/** The Main class. Will start and end a game. **/
+/** The Main class. Will addInventory and end a game. **/
 import gameWorld.GameState;
 import userInterface.MainGameWindow;
 

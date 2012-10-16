@@ -99,11 +99,9 @@ public class Room extends CustomComponent {
             double componentRatio = (drawable.w * w) / (drawable.h * h);
 
             if (imageRatio > componentRatio) { // 
-                System.out.println(">");
                 iw = (int) (drawable.w * w);
                 ih = (int) (iw / imageRatio);
             } else {
-                System.out.println("<");
                 ih = (int) (drawable.h * h);
                 iw = (int) (imageRatio * ih);
             }
