@@ -8,15 +8,14 @@ public class Player {
 	
 	String playerName;
 	private int livesRemaining = 3;
+
 	private ArrayList<RoomComponent> playerItems = new ArrayList<RoomComponent>();
+
 	private Room playerRoom;
 	private Room previousRoom;
 	private Weapon weapon = new Weapon(5); //Fists
-	
 
-	public Player(String name, ArrayList<RoomComponent> drawables, Room room, Room prevRoom){
-
-		
+	public Player(String name, ArrayList<RoomComponent> drawables, Room room, Room prevRoom){	
 		this.playerName = name;
 		this.playerItems = drawables;
 		this.playerRoom = room;
@@ -51,6 +50,7 @@ public class Player {
 		this.livesRemaining = livesRemaining;
 	}
 
+
 	public ArrayList<RoomComponent> getPlayerItems() {
 		return playerItems;
 	}
@@ -67,7 +67,7 @@ public class Player {
 	public void addItems(ArrayList<RoomComponent> items){
 		this.playerItems.addAll(items);
         }
-	
+
 
 	public Room getPlayerRoom() {
 		return playerRoom;

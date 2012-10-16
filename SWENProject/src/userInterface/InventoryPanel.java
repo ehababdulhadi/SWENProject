@@ -1,6 +1,9 @@
 package userInterface;
 
+
 import gameWorld.RoomComponent;
+
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -12,6 +15,7 @@ import java.awt.Graphics2D;
  * @author Rudi Theunissen
  */
 public class InventoryPanel extends CustomComponent {
+
 	
     public InventoryPanel() {
         setPreferredSize(new Dimension(0, 50));
@@ -29,9 +33,11 @@ public class InventoryPanel extends CustomComponent {
         validate();
     }
 
+
     public void paintContent(Graphics2D g) {
         g.setColor(Color.DARK_GRAY);
         g.fillRect(0, 0, getWidth(), getHeight());
         super.paintContent(g);
     }
+
 }

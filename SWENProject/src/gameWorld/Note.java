@@ -1,6 +1,8 @@
 package gameWorld;
 
+
 public class Note extends RoomComponent{
+
 	
 	private String message;
 	

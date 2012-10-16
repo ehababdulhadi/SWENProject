@@ -2,22 +2,12 @@ package gameWorld;
 
 /** Represents a Zombie (Enemy). A Zombie can carry an item and the player need to carry a weapon to kill one. 
  * Some Zombies requires a special type of weapons to be killed. Ex: The boss Zombie will need to be killed with a Bazooka! **/
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
-import javax.swing.border.LineBorder;
-
-import userInterface.CustomComponent;
-import userInterface.ResourceLoader;
 
 
 
-public class Zombie extends RoomComponent{
+public class Zombie extends RoomComponentContainer{
 	
-	private ArrayList<RoomComponent> contents = new ArrayList<RoomComponent>();
+	
 
 	public Zombie(double x, double y, double w, double h, String imagePath) {
 		super(x, y, w, h, imagePath);
@@ -25,13 +15,16 @@ public class Zombie extends RoomComponent{
 	}
 	
 	private String enemy_name;
-
-	 public void addItem(RoomComponent drawable){
-	        contents.add(drawable);
-	    }
 	/*private String enemy_name;
 >>>>>>> 2ff26f3c2a3a5ab064e0eb8856185a92e6ea3b74
 	private RoomComponent itemCarriedByZombie;
+=======
+	 public void addItem(Drawable drawable){
+	        contents.add(drawable);
+	    }
+	/*private String enemy_name;
+	private Drawable itemCarriedByZombie;
+>>>>>>> 2ff26f3c2a3a5ab064e0eb8856185a92e6ea3b74
 	private Room roomOfZombie;
 	private ImageIcon zombieImage;
 	private boolean isBoss = false;
@@ -122,11 +115,19 @@ public Zombie (double x, double y, double w, double h, String imagePath) {
 		return 0;
 	}
 
+<<<<<<< HEAD
 	public RoomComponent getItemCarriedByZombie() {
 		return itemCarriedByZombie;
 	}
 
 	public void setItemCarriedByZombie(RoomComponent itemCarriedByZombie) {
+=======
+	public Drawable getItemCarriedByZombie() {
+		return itemCarriedByZombie;
+	}
+
+	public void setItemCarriedByZombie(Drawable itemCarriedByZombie) {
+>>>>>>> 2ff26f3c2a3a5ab064e0eb8856185a92e6ea3b74
 		this.itemCarriedByZombie = itemCarriedByZombie;
 	}
 
