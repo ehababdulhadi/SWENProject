@@ -27,7 +27,7 @@ public class StartMenu extends CustomComponent {
 
         ActionListener al = new ActionListener() {
 
-            @Override
+            
             public void actionPerformed(ActionEvent e) {
                 Object src = e.getSource();
                 if (src == host) {

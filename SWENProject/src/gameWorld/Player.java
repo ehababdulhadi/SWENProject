@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /** Represents a game player. Hold all sort of Player's info, including name, lives, health, items carried... etc **/
 public class Player {
-	
+	private boolean hasTooth = false;
 	String playerName;
 	private int livesRemaining = 3;
 
@@ -26,7 +26,14 @@ public class Player {
 	public Room getPreviousRoom() {
 		return previousRoom;
 	}
-
+	
+	public void aquireTooth(){
+		hasTooth = true;
+	}
+	
+	public boolean hasZombieTooth(){
+		return hasTooth;
+	}
 	public void setPreviousRoom(Room previousRoom) {
 		this.previousRoom = previousRoom;
 	}

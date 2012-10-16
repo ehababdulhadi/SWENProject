@@ -79,6 +79,15 @@ public class GameState {
             case 105:
                 ROOMS[5].removeItem(gun);
                 break;
+            case 200:
+                ROOMS[2].removeItem(zombie1);
+                break;
+            case 300:
+                ROOMS[3].removeItem(zombie2);
+                break;
+            case 400:
+                ROOMS[5].removeItem(zombie3);
+                break;
         }
     }
 
@@ -136,7 +145,8 @@ public class GameState {
     private static RoomComponent goldKey;
     private static RoomComponent baseballBat;
     private static RoomComponent gun;
-    private static RoomComponent note3;
+    private static RoomComponent fang;
+    private static Note note3;
     private static RoomComponent bricks;
     private static RoomComponentContainer zombie1;
     private static RoomComponentContainer zombie2;
@@ -151,8 +161,8 @@ public class GameState {
             public void onMouseClick(MouseEvent e) {
                 System.err.println("Bronze chest was clicked");
 
-                if (this.getContents().isEmpty()) {
-                  //  Message.show("This chest has already been opened and contains no items");
+                if (this.getContents().size() == 0) {
+                    Message.show("This chest has already been opened and contains no items");
                 } else {
                     String input = JOptionPane.showInputDialog("What is the combination?");
                     int c = 0;
@@ -160,12 +170,12 @@ public class GameState {
                         c = Integer.parseInt(input);
                     } catch (Exception ex) {
                     }
-                    if (c == 1234) {
+                    if (c == 1337) {
                         Message.show("Correct! You now have the bronze key");
-                        MainGameWindow.getInventory().addItem(bronzeKey);
                         player.addItems(this.getContents());
                         this.removeItems();
                         LOCKS[3] = true;
+                        MainGameWindow.getInventory().addItem(bronzeKey);
                         sendToNetwork(100);
                     } else {
                         Message.show("Sorry that was incorrect.");
@@ -190,6 +200,7 @@ public class GameState {
                 ROOMS[0].removeItem(this);
                 LOCKS[5] = true;
                 sendToNetwork(101);
+                MainGameWindow.getInventory().addItem(this);
                 Message.show("You found a silver key!");
             }
         };
@@ -198,24 +209,24 @@ public class GameState {
 
 
             public void onMouseClick(MouseEvent e) {
+                MainGameWindow.getInventory().addItem(this);
                 sendToNetwork(102);
             }
         };
 
-        final String message3 = "Page 3: I'm the last one left";
-     
-        note3 = new RoomComponent(0.8, 0.8, 0.1, 0.1, "images/note-paper.png") {
+        String message3 = "Page 3: I'm the last one left";
+        note3 = new Note(0.8, 0.8, 0.1, 0.1, "images/note-paper.png", message3) {
 
             @Override
             public void onMouseClick(MouseEvent e) {
                 ROOMS[0].removeItem(this);
                 sendToNetwork(103);
-
-                Message.show("You picked up a note! It says:\n" + message3);
+                Message.show("You picked up a note! It says:\n" + this.getMessage());
             }
         };
 
-
+        fang = new RoomComponent(0.7, 0.85, 0.2, 0.2, "images/Fang.png") ;
+            
         baseballBat = new RoomComponent(0.7, 0.85, 0.2, 0.2, "images/baseballbat.png") {
             @Override
             public void onMouseClick(MouseEvent e) {
@@ -228,27 +239,55 @@ public class GameState {
         };
 
         // Ehab - Trying Zombies //
-        zombie1 = new Zombie(0.6, 0.8, 0.6, 0.6, "images/zombie1.png") {
+        zombie1 = new RoomComponentContainer(0.6, 0.8, 0.6, 0.6, "images/zombie1.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
                 System.out.println("Zombie1 Clicked!");
+                this.setHealth(this.getHealth()-player.useWeapon());
+                if(this.isDead()){
+                    ROOMS[2].removeItem(this);
+                    sendToNetwork(200);
+                    Message.show("You killed the zombie! It drops a note that with a 4 digit code on it. 1337");
+                }
             }
         };
 
-        zombie2 = new Zombie(0.6, 0.8, 0.2, 0.6, "images/zombie2.png") {
+
+
+
+
+        zombie2 = new RoomComponentContainer(0.6, 0.8, 0.2, 0.6, "images/zombie2.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
                 System.out.println("Zombie2 Clicked!");
+                System.out.println("Zombie1 Clicked!");
+                this.setHealth(this.getHealth()-player.useWeapon());
+                if(this.isDead()){
+                    ROOMS[3].removeItem(this);
+                    MainGameWindow.getInventory().addItem(fang);
+                    player.aquireTooth();
+                    sendToNetwork(300);
+                    Message.show("You killed the zombie! You rip out a tooth and save it for later");
+                }
             }
         };
 
-        zombie3 = new Zombie(0.6, 0.8, 0.2, 0.6, "images/zombie3.png") {
+        zombie3 = new RoomComponentContainer(0.6, 0.8, 0.2, 0.6, "images/zombie3.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
                 System.out.println("Zombie3 Clicked!");
+                System.out.println("Zombie1 Clicked!");
+                this.setHealth(this.getHealth()-player.useWeapon());
+                if(this.isDead()){
+                    ROOMS[5].removeItem(this);
+                    sendToNetwork(400);
+                       MainGameWindow.getInventory().addItem(goldKey);  
+                       LOCKS[4] = true;
+                    Message.show("You killed the zombie! He was holding a golden key. You pick it up");
+                }
             }
         };
 
@@ -258,39 +297,33 @@ public class GameState {
             public void onMouseClick(MouseEvent e) {
                 player.setWeapon(new Weapon(50));
                 ROOMS[5].removeItem(this);
-                MainGameWindow.getInventory().addItem(this);
                 sendToNetwork(105);
+                MainGameWindow.getInventory().addItem(this);
                 Message.show("You have found a gun. You feel safer.");
             }
         };
 
         bricks = new RoomComponent(0.6, 0.3, 0.2, 0.2, "images/brick.png") {
-            
-            private boolean checked, taken;
 
             @Override
             public void onMouseClick(MouseEvent e) {
-                if (!checked) {
-                    checked = true;
+                if (!player.hasZombieTooth()) {
                     sendToNetwork(106);
                     Message.show("Wow...bricks...though one of them is slightly loose but you can't seem to pry it out");
-                } else if(!taken){
+                } else {
                     Message.show("You use your zombie tooth to pry a loose brick free. You find a silver key");
-                    taken = true;
                     ROOMS[0].removeItem(silverKey);
                     LOCKS[5] = true;
-                    MainGameWindow.getInventory().addItem(silverKey);
                     player.addItem(silverKey);
+                    MainGameWindow.getInventory().addItem(silverKey);
                     sendToNetwork(101);
-                } else {
-                    // do nothing.
                 }
             }
         };
 
         
-    //    zombie1.addItem(note3);
-    //    zombie2.addItem(note3);
+        zombie1.addItem(note3);
+        zombie2.addItem(note3);
         zombie3.addItem(goldKey);
         bronzeChest.addItem(bronzeKey);
 
@@ -301,8 +334,8 @@ public class GameState {
         ROOMS[5].addItem(gun);
 
         // Add Zombies //
-        ROOMS[3].addItem(zombie1);
-        ROOMS[4].addItem(zombie2);
+        ROOMS[2].addItem(zombie1);
+        ROOMS[3].addItem(zombie2);
         ROOMS[5].addItem(zombie3);
 
     }
