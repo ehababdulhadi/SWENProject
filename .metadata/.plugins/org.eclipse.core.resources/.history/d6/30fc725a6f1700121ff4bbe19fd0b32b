@@ -233,6 +233,10 @@ public class GameState {
             }
         };
 
+
+
+
+
         zombie2 = new Zombie(0.6, 0.8, 0.2, 0.6, "images/brick.png") {
 
             @Override

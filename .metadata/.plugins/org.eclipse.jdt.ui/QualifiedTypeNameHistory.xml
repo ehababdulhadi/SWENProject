@@ -5,4 +5,7 @@
 <fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
 <fullyQualifiedTypeName name="gameWorld.Main"/>
 <fullyQualifiedTypeName name="gameWorld.GameState"/>
+<fullyQualifiedTypeName name="userInterface.CustomComponent"/>
+<fullyQualifiedTypeName name="gameWorld.Zombie"/>
+<fullyQualifiedTypeName name="gameWorld.Player"/>
 </qualifiedTypeNameHistroy>
