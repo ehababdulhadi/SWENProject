@@ -1,6 +1,8 @@
 package userInterface;
 
 import gameWorld.GameState;
+import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.Dimension;
 
 import javax.swing.*;
@@ -11,23 +13,28 @@ import javax.swing.*;
  */
 public class MainGameWindow extends JFrame {
 
-    public static final ViewSwitcher ROOM_SWITCHER = new ViewSwitcher();
+    private static final ViewSwitcher switcher = new ViewSwitcher();
+    private static final InventoryPanel inventory = new InventoryPanel();
     
     public static void switchToRoom(int room){
-        ROOM_SWITCHER.switchTo(room % GameState.ROOMS.length);
+        switcher.switchTo(room % GameState.ROOMS.length);
     }
 
     public MainGameWindow() {
-
-        ROOM_SWITCHER.setHost(getContentPane());
         
-        ROOM_SWITCHER.registerView(new StartMenu(), -1);
+        Container content = getContentPane();
+        
+
+        switcher.setHost(content);
+        
+        switcher.registerView(new StartMenu(), "Menu");
+        content.add(inventory, BorderLayout.SOUTH);
         
         for(int i = 0; i < GameState.ROOMS.length; i++){
-            ROOM_SWITCHER.registerView(GameState.ROOMS[i], i);
+            switcher.registerView(GameState.ROOMS[i], i);
         }
 
-        ROOM_SWITCHER.switchTo(-1);
+        switcher.switchTo("Menu");
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(1000, 500));
