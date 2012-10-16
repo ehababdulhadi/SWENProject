@@ -1,6 +1,6 @@
 package gameWorld;
 
-public class Note extends Drawable{
+public class Note extends RoomComponent{
 	
 	private String message;
 	

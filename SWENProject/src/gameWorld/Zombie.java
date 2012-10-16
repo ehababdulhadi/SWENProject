@@ -5,6 +5,7 @@ package gameWorld;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
@@ -12,49 +13,67 @@ import javax.swing.border.LineBorder;
 import userInterface.CustomComponent;
 import userInterface.ResourceLoader;
 
-public class Zombie extends  CustomComponent{
+
+
+public class Zombie extends RoomComponent{
+	
+	private ArrayList<RoomComponent> contents = new ArrayList<RoomComponent>();
+
+	public Zombie(double x, double y, double w, double h, String imagePath) {
+		super(x, y, w, h, imagePath);
+		// TODO Auto-generated constructor stub
+	}
 	
 	private String enemy_name;
-	private Drawable itemCarriedByZombie;
+
+	 public void addItem(RoomComponent drawable){
+	        contents.add(drawable);
+	    }
+	/*private String enemy_name;
+>>>>>>> 2ff26f3c2a3a5ab064e0eb8856185a92e6ea3b74
+	private RoomComponent itemCarriedByZombie;
 	private Room roomOfZombie;
 	private ImageIcon zombieImage;
 	private boolean isBoss = false;
 	
 	public final BufferedImage image;
+	private final String imagePath;
     public final double x, y, w, h; 
 	
-	/*public Zombie (String name, Room room, ImageIcon image){
+	public Zombie (String name, Room room, ImageIcon image){
 		
 		this.enemy_name = name;
 		this.roomOfZombie = room;
 		this.zombieImage = image;
-	}*/
+	}
 	
-public Zombie (double x, double y, double w, double h, String imagePath){
+public Zombie (double x, double y, double w, double h, String imagePath) {
 		
 	this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
+    this.imagePath = imagePath;
     image = ResourceLoader.openImage(imagePath);
-    this.setBorder(new LineBorder(Color.RED));
 	}
-@Override
-public void paintContent(Graphics2D g) {
-    
-	if(image == null) return;
+
+	public String toString(){
+    return "Zombie[imagePath=" + imagePath + "]";
+	}
+
+	@Override
+	public void paintContent(Graphics2D g) {
     if(image != null) g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-    System.out.println("paint");
-}
+	}
 	
-	/**
+	*//**
 	 * Is called if this enemy is attacked by a player
 	 * Works out the damage allocated and removes it from the enemies health
-	 */
+	 *//*
 	public void receiveHit(int damage){ 
 		this.setLife(getLife()-damage);
 		if (isDead()){
-			/** change enemy's image to dead **/
+			*//** change enemy's image to dead **//*
 			}			
 		}
 
@@ -103,11 +122,11 @@ public void paintContent(Graphics2D g) {
 		return 0;
 	}
 
-	public Drawable getItemCarriedByZombie() {
+	public RoomComponent getItemCarriedByZombie() {
 		return itemCarriedByZombie;
 	}
 
-	public void setItemCarriedByZombie(Drawable itemCarriedByZombie) {
+	public void setItemCarriedByZombie(RoomComponent itemCarriedByZombie) {
 		this.itemCarriedByZombie = itemCarriedByZombie;
 	}
 
@@ -125,5 +144,5 @@ public void paintContent(Graphics2D g) {
 
 	public void setIsBoss(boolean isBoss) {
 		this.isBoss = isBoss;
-	}	
+	}	*/
 }

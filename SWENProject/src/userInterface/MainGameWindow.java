@@ -37,7 +37,7 @@ public class MainGameWindow extends JFrame {
         switcher.switchTo("Menu");
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(1000, 500));
+        setPreferredSize(new Dimension(1000, 600));
         pack();
         setLocationRelativeTo(null);
         setVisible(true);

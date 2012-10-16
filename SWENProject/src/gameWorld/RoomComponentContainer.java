@@ -1,0 +1,33 @@
+package gameWorld;
+
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Rudi Theunissen
+ */
+public class RoomComponentContainer extends RoomComponent {
+
+    private ArrayList<RoomComponent> contents = new ArrayList<RoomComponent>();
+
+    public RoomComponentContainer(double x, double y, double w, double h, String imagePath) {
+        super(x, y, w, h, imagePath);
+    }
+
+    public ArrayList<RoomComponent> getContents() {
+        return contents;
+    }
+
+    public void addItem(RoomComponent item) {
+        contents.add(item);
+    }
+
+    public void removeItem(RoomComponent item) {
+        contents.remove(item);
+
+    }
+
+    public void removeItems() {
+        contents.clear();
+    }
+}
