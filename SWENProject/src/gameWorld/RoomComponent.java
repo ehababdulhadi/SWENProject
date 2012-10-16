@@ -1,12 +1,7 @@
 package gameWorld;
 
-import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-
-import javax.swing.border.LineBorder;
 import userInterface.CustomComponent;
 import userInterface.ResourceLoader;
 
@@ -23,7 +18,6 @@ public class RoomComponent extends CustomComponent{
         this.h = h;
         this.imagePath = imagePath;
         image = ResourceLoader.openImage(imagePath);
-        //this.setBorder(new LineBorder(Color.RED));
     }
     
     @Override

@@ -136,7 +136,7 @@ public class GameState {
     private static RoomComponent goldKey;
     private static RoomComponent baseballBat;
     private static RoomComponent gun;
-    private static Note note3;
+    private static RoomComponent note3;
     private static RoomComponent bricks;
     private static RoomComponentContainer zombie1;
     private static RoomComponentContainer zombie2;
@@ -151,8 +151,8 @@ public class GameState {
             public void onMouseClick(MouseEvent e) {
                 System.err.println("Bronze chest was clicked");
 
-                if (this.getContents().size() == 0) {
-                    Message.show("This chest has already been opened and contains no items");
+                if (this.getContents().isEmpty()) {
+                  //  Message.show("This chest has already been opened and contains no items");
                 } else {
                     String input = JOptionPane.showInputDialog("What is the combination?");
                     int c = 0;
@@ -201,14 +201,15 @@ public class GameState {
             }
         };
 
-        String message3 = "Page 3: I'm the last one left";
-        note3 = new Note(0.8, 0.8, 0.1, 0.1, "images/note-paper.png", message3) {
+        final String message3 = "Page 3: I'm the last one left";
+     
+        note3 = new RoomComponent(0.8, 0.8, 0.1, 0.1, "images/note-paper.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
                 ROOMS[0].removeItem(this);
                 sendToNetwork(103);
-                Message.show("You picked up a note! It says:\n" + this.getMessage());
+                Message.show("You picked up a note! It says:\n" + message3);
             }
         };
 
@@ -284,8 +285,8 @@ public class GameState {
         };
 
         
-        zombie1.addItem(note3);
-        zombie2.addItem(note3);
+    //    zombie1.addItem(note3);
+    //    zombie2.addItem(note3);
         zombie3.addItem(goldKey);
         bronzeChest.addItem(bronzeKey);
 
