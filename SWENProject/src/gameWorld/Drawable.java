@@ -8,13 +8,13 @@ import javax.swing.border.LineBorder;
 import userInterface.CustomComponent;
 import userInterface.ResourceLoader;
 
-public class Item extends CustomComponent{
+public class Drawable extends CustomComponent{
 
     public final BufferedImage image;
     private final String imagePath;
     public final double x, y, w, h;
     
-    public Item(double x, double y, double w, double h, String imagePath){
+    public Drawable(double x, double y, double w, double h, String imagePath){
         this.x = x;
         this.y = y;
         this.w = w;

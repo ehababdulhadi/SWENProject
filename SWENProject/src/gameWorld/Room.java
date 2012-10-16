@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 import userInterface.CustomComponent;
 
 /**
- * Represents a Room, which can contain a Player, Zombie, Item and Doors
+ * Represents a Room, which can contain a Player, Zombie, Drawable and Doors
  *
  */
 public class Room extends CustomComponent {
@@ -29,7 +29,7 @@ public class Room extends CustomComponent {
     
     
     private Door[] doors;
-        private ArrayList<Item> items = new ArrayList<Item>();
+        private ArrayList<Drawable> items = new ArrayList<Drawable>();
 
     public Room(int... destinations) {
 //		this.roomName = name;
@@ -91,7 +91,7 @@ public class Room extends CustomComponent {
             else if (i == 2) doors[2].setBounds(w - w / 4 / 2 - pc / 2, backWall.y + backWall.height - doorHeight + doorHeight / 8, doorWidth - pc, doorHeight + doorHeight / 4);
         }
 
-        for (Item item : items) {
+        for (Drawable item : items) {
             
             int iw, ih;
 
@@ -114,13 +114,13 @@ public class Room extends CustomComponent {
         }
     }
 
-    public void addItem(Item item) {
+    public void addItem(Drawable item) {
         items.add(item);
         this.add(item);
         repaint();
     }
 
-    public void removeItem(Item item) {
+    public void removeItem(Drawable item) {
         items.remove(item);
         this.remove(item);
         repaint();
@@ -179,11 +179,11 @@ public class Room extends CustomComponent {
         this.doorsOfTheRoom = doorsOfTheRoom;
     }
 
-    public ArrayList<Item> getItemsOfTheRoom() {
+    public ArrayList<Drawable> getItemsOfTheRoom() {
         return items;
     }
 
-    public void setItemsOfTheRoom(ArrayList<Item> itemsOfTheRoom) {
+    public void setItemsOfTheRoom(ArrayList<Drawable> itemsOfTheRoom) {
         this.items = itemsOfTheRoom;
     }
 }

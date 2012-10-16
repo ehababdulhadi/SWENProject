@@ -15,7 +15,7 @@ import userInterface.ResourceLoader;
 public class Zombie extends  CustomComponent{
 	
 	private String enemy_name;
-	private Item itemCarriedByZombie;
+	private Drawable itemCarriedByZombie;
 	private Room roomOfZombie;
 	private ImageIcon zombieImage;
 	private boolean isBoss = false;
@@ -103,11 +103,11 @@ public void paintContent(Graphics2D g) {
 		return 0;
 	}
 
-	public Item getItemCarriedByZombie() {
+	public Drawable getItemCarriedByZombie() {
 		return itemCarriedByZombie;
 	}
 
-	public void setItemCarriedByZombie(Item itemCarriedByZombie) {
+	public void setItemCarriedByZombie(Drawable itemCarriedByZombie) {
 		this.itemCarriedByZombie = itemCarriedByZombie;
 	}
 

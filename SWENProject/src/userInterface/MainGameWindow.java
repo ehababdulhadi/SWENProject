@@ -43,4 +43,8 @@ public class MainGameWindow extends JFrame {
         setVisible(true);
 
     }
+    
+    public static InventoryPanel getInventory(){
+        return inventory;
+    }
 }
