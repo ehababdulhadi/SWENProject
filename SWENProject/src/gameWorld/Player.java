@@ -22,17 +22,6 @@ public class Player {
 		this.previousRoom = prevRoom;
 		
 	}
-	
-	 private boolean hasZombieTooth =false;
-
-	     public void aquireTooth(){
-	         hasZombieTooth = true;
-	     }
-	     
-	     public boolean hasZombieTooth(){
-	         return hasZombieTooth;
-	     }
-
 
 	public Room getPreviousRoom() {
 		return previousRoom;

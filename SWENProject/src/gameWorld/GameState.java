@@ -225,7 +225,7 @@ public class GameState {
         };
 
         // Ehab - Trying Zombies //
-        zombie1 = new RoomComponentContainer(0.6, 0.8, 0.6, 0.6, "images/brick.png") {
+        zombie1 = new Zombie(0.6, 0.8, 0.6, 0.6, "images/brick.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
@@ -237,7 +237,7 @@ public class GameState {
 
 
 
-        zombie2 = new RoomComponentContainer(0.6, 0.8, 0.2, 0.6, "images/brick.png") {
+        zombie2 = new Zombie(0.6, 0.8, 0.2, 0.6, "images/brick.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
@@ -245,7 +245,7 @@ public class GameState {
             }
         };
 
-        zombie3 = new RoomComponentContainer(0.6, 0.8, 0.2, 0.6, "images/brick.png") {
+        zombie3 = new Zombie(0.6, 0.8, 0.2, 0.6, "images/brick.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
@@ -265,19 +265,24 @@ public class GameState {
         };
 
         bricks = new RoomComponent(0.6, 0.3, 0.2, 0.2, "images/brick.png") {
+            
+            private boolean checked, taken;
 
             @Override
             public void onMouseClick(MouseEvent e) {
-                if (!player.hasZombieTooth()) {
+                if (!checked) {
+                    checked = true;
                     sendToNetwork(106);
                     Message.show("Wow...bricks...though one of them is slightly loose but you can't seem to pry it out");
-                    player.aquireTooth();
-                } else {
+                } else if(!taken){
                     Message.show("You use your zombie tooth to pry a loose brick free. You find a silver key");
+                    taken = true;
                     ROOMS[0].removeItem(silverKey);
                     LOCKS[5] = true;
                     player.addItem(silverKey);
                     sendToNetwork(101);
+                } else {
+                    // do nothing.
                 }
             }
         };
