@@ -106,7 +106,7 @@ public class GameState {
             @Override
             public void onMouseClick(MouseEvent e) {
                 System.err.println("Bronze chest was clicked");
-                if(this.getContents().size()==0){
+                if(this.getContents().isEmpty()){
                 	Message.show("This chest has already been opened and contains no items");
                 }else{
 	                String input = JOptionPane.showInputDialog("What is the combination?");
@@ -168,7 +168,7 @@ public class GameState {
             public void onMouseClick(MouseEvent e) {
             	player.setWeapon(new Weapon(20));
             	ROOMS[1].removeItem(this);
-            	Message.show("You have found a baseball bat. This could help defending against enemies");
+            	Message.show("You have found a baseball bat. This could help defend against enemies");
             }
         };
         

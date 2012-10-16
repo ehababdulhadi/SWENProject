@@ -97,20 +97,15 @@ public class Room extends CustomComponent {
 
             if (item.image == null) return;
        
-            double sourceRatio = item.image.getWidth() / item.image.getHeight();
-            double currentRatio = (item.w * w) / (item.h * h);
+            double imageRatio = item.image.getWidth() / item.image.getHeight();
+            double componentRatio = (item.w * w) / (item.h * h);
             
-            System.out.println("sourceRatio = " + sourceRatio);
-            System.out.println("currentRatio = " + currentRatio);
-
-            if (sourceRatio >= currentRatio) { // 
-                System.out.println(item + " src > current");
+            if (imageRatio > componentRatio) { // 
                 iw = (int)(item.w * w);
-                ih = (int)(sourceRatio * iw);
+                ih = (int)(iw / imageRatio);
 
             } else {
-                System.out.println(item + " src < current");
-                iw = (int)(sourceRatio * (int)(item.h * h));
+                iw = (int)(imageRatio * item.h * h);
                 ih = (int)(item.h * h);
             }
 
