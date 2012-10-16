@@ -119,13 +119,14 @@ public class Room extends CustomComponent {
         
         // Drawing the Zombies (if there is one!)  //
         if (this.getZombie() != null)
-        	this.getZombie().setBounds((int) (this.getZombie().x * getWidth()), (int) (this.getZombie().y * getHeight()) - 2, 1, 1);
+        	this.getZombie().setBounds((int) (this.getZombie().x * getWidth()), (int) (this.getZombie().y * getHeight()) - 2, 100, 20);
     }
 
 
    public void addItem(RoomComponent item) {
         items.add(item);
         this.add(item);
+        repaint();
     }
     public void removeItem(RoomComponent item) {
         items.remove(item);

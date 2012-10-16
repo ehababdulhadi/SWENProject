@@ -110,8 +110,8 @@ public class ResourceLoader {
     // Simply displays an error dialog and exits.
     private static void error(Object message) {
         message = message + "\nContinue anyway?";
-//        if (showConfirmDialog(null, message, "Error", 0, 0) == 1) {
-//            System.exit(0);
-//        }
+        if (showConfirmDialog(null, message, "Error", 0, 0) == 1) {
+            System.exit(0);
+        }
     }
 }
