@@ -55,12 +55,12 @@ public class StartMenu extends CustomComponent {
     	BufferedImage image = ResourceLoader.openImage("images/mainScreen.png");
     	g.drawImage(image, 0, 0, 1000, 550, null);
     	g.setColor(Color.WHITE);
-    	/*Rectangle rec1 = new Rectangle(100,100,100,100){
+    	Rectangle rec1 = new Rectangle(100,100,100,100){
 
 			public void onMouseClick(MouseEvent e){
                 System.err.println("Bronze key was clicked");
             }
     	};
-    	g.draw(rec1);*/
+    	g.draw(rec1);
     }
 }

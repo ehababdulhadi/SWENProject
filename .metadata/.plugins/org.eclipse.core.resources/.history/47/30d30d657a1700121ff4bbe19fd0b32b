@@ -239,7 +239,7 @@ public class GameState {
         };
 
         // Ehab - Trying Zombies //
-        zombie1 = new RoomComponentContainer(0.6, 0.8, 0.6, 0.6, "images/zombie1.png") {
+        zombie1 = new RoomComponentContainer(0.6, 0.8, 0.6, 0.6, "images/enemy.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
@@ -257,7 +257,7 @@ public class GameState {
 
 
 
-        zombie2 = new RoomComponentContainer(0.6, 0.8, 0.2, 0.6, "images/zombie2.png") {
+        zombie2 = new RoomComponentContainer(0.6, 0.8, 0.2, 0.6, "images/enemy.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
@@ -274,7 +274,7 @@ public class GameState {
             }
         };
 
-        zombie3 = new RoomComponentContainer(0.6, 0.8, 0.2, 0.6, "images/zombie3.png") {
+        zombie3 = new RoomComponentContainer(0.6, 0.8, 0.2, 0.6, "images/enemy.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
