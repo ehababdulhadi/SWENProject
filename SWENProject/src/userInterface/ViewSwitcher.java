@@ -60,7 +60,6 @@ package userInterface;
             if(host == null) return;  
             SwingUtilities.invokeLater(new Runnable() {  
       
-                @Override  
                 public void run() {  
                     Container view = views.get(key.toString());  
       

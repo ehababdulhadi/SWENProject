@@ -10,8 +10,9 @@ import userInterface.CustomComponent;
 import userInterface.MainGameWindow;
 import userInterface.Message;
 
-public class Door extends CustomComponent {
 
+public class Door extends CustomComponent {
+/** Represents a Door. Links between 2 rooms, could be locked and need a specific type of key to open. **/
 //	private Room room1;
 //	private Room room2;
     private String doorKey;
@@ -22,9 +23,9 @@ public class Door extends CustomComponent {
         this.destination = destination;
         this.orientation = orientation;
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        
-       // this.setBorder(new LineBorder(Color.RED));
+
     }
+
 
     @Override
     public void onMouseClick(MouseEvent e) {

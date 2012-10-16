@@ -18,7 +18,6 @@ public class MainGameWindow extends JFrame {
     }
 
     public MainGameWindow() {
-        
 
         ROOM_SWITCHER.setHost(getContentPane());
         
