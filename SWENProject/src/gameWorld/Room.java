@@ -44,7 +44,7 @@ public class Room extends CustomComponent {
         
         doors = new Door[destinations.length];
         for(int i = 0; i < doors.length; i++){
-            doors[i] = new Door(destinations[i]);
+            doors[i] = new Door(destinations[i], i);
             this.add(doors[i]);
         }
         
@@ -81,33 +81,40 @@ public class Room extends CustomComponent {
 
         int doorWidth = w / 8;
         int doorHeight = h / 3;
+        
+        int pc = doorWidth / 4; // perspective correction
 
 
         for (int i = 0; i < doors.length; i++) {
-            if (i == 1) doors[1].setBounds(w / 4 / 2 - doorWidth / 2, h / 2, doorWidth, doorHeight);
-            else if (i == 0) doors[0].setBounds(backWall.x + backWall.width / 2 - doorWidth / 2, backWall.y + backWall.height - doorHeight, doorWidth, doorHeight);
-            else if (i == 2) doors[2].setBounds(w - w / 4 / 2 - doorWidth / 2, h / 2, doorWidth, doorHeight);
+            if (i == 0)      doors[0].setBounds(backWall.x + backWall.width / 2 - doorWidth / 2, backWall.y + backWall.height - doorHeight, doorWidth, doorHeight);
+            else if (i == 1) doors[1].setBounds(w / 4 / 2 - doorWidth / 2 - pc / 2, backWall.y + backWall.height - doorHeight + doorHeight / 8, doorWidth - pc, doorHeight + doorHeight / 4);
+            else if (i == 2) doors[2].setBounds(w - w / 4 / 2 - pc / 2, backWall.y + backWall.height - doorHeight + doorHeight / 8, doorWidth - pc, doorHeight + doorHeight / 4);
         }
 
         for (Item item : items) {
+            
+            int iw, ih;
 
             if (item.image == null) return;
+       
             double sourceRatio = item.image.getWidth() / item.image.getHeight();
-            double currentRatio = item.w * w / item.h * h;
+            double currentRatio = (item.w * w) / (item.h * h);
             
-                 //       item.setBounds((int)(item.x * w), (int)(item.y * h), (int)(item.w * w), (int)(item.h * h));
+            System.out.println("sourceRatio = " + sourceRatio);
+            System.out.println("currentRatio = " + currentRatio);
 
-
-            if (sourceRatio > currentRatio) { // 
-                w =  (int)(item.w * w);
-                h = (int) (sourceRatio * w);
+            if (sourceRatio >= currentRatio) { // 
+                System.out.println(item + " src > current");
+                iw = (int)(item.w * w);
+                ih = (int)(sourceRatio * iw);
 
             } else {
-                w = (int) (sourceRatio * (int)(item.h * h));
-                h = (int)(item.h * h);
+                System.out.println(item + " src < current");
+                iw = (int)(sourceRatio * (int)(item.h * h));
+                ih = (int)(item.h * h);
             }
 
-            item.setBounds((int) (item.x * getWidth()), (int) (item.y * getHeight()) - h, w, h);
+            item.setBounds((int) (item.x * getWidth()), (int) (item.y * getHeight()) - ih, iw, ih);
 
         }
     }

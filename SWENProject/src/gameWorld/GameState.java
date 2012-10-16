@@ -99,7 +99,7 @@ public class GameState {
             }
         };
 
-        Item bronzeKey = new Item(0.7, 0.8, 0.075, 0.1, "images/key_bronze.png") {
+        Item bronzeKey = new Item(0.7, 0.8, 0.2, 0.2, "images/key_bronze.png") {
 
             @Override
             public void onMouseClick(MouseEvent e) {
