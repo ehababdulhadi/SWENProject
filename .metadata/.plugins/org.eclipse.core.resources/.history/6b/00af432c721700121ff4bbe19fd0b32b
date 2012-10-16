@@ -297,9 +297,9 @@ public class GameState {
         ROOMS[5].addItem(gun);
 
         // Add Zombies //
-        ROOMS[2].addItem(zombie1);
-        ROOMS[3].addItem(zombie2);
-        ROOMS[4].addItem(zombie3);
+        ROOMS[3].addItem(zombie1);
+        ROOMS[4].addItem(zombie2);
+        ROOMS[5].addItem(zombie3);
 
     }
 }
